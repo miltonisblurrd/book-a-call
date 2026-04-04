@@ -93,7 +93,7 @@ export default function BookingFlow() {
 
         {step === "confirmation" && confirmedBooking ? (
           <div>
-            <div className="px-5 py-4 md:px-6" style={{ backgroundColor: ORANGE }}>
+            <div className="px-5 py-4 md:px-6 mb-6" style={{ backgroundColor: ORANGE }}>
               <h1 className="text-xl md:text-2xl font-bold tracking-tight" style={{ color: NAVY }}>
                 You&apos;re booked!
               </h1>
@@ -105,7 +105,7 @@ export default function BookingFlow() {
         ) : (
           <div>
             {/* Orange banner */}
-            <div className="px-5 py-4 md:px-6" style={{ backgroundColor: ORANGE }}>
+            <div className="px-5 py-4 md:px-6 mb-6" style={{ backgroundColor: ORANGE }}>
               <h1 className="text-xl md:text-2xl font-bold tracking-tight" style={{ color: NAVY }}>
                 Let&apos;s Chat!
               </h1>
@@ -115,7 +115,7 @@ export default function BookingFlow() {
             </div>
 
             {/* Main card */}
-            <div style={{ border: `2px solid ${NAVY}`, borderTop: "none" }}>
+            <div style={{ border: `2px solid ${NAVY}` }}>
               <div
                 className={
                   step === "datetime"
