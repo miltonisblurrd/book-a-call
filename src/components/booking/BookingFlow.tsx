@@ -110,7 +110,7 @@ export default function BookingFlow() {
                 Let&apos;s Chat!
               </h1>
               <p className="text-sm mt-0.5 font-medium" style={{ color: NAVY, opacity: 0.75 }}>
-                Walk us through what you&apos;re building. We&apos;ll outline how we can help.
+                Walk me through what you&apos;re building. I will outline how we can help.
               </p>
             </div>
 
