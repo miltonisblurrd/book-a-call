@@ -1,10 +1,8 @@
 import type { NextConfig } from "next";
 
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
-
 const nextConfig: NextConfig = {
-  basePath: BASE_PATH,
-  assetPrefix: BASE_PATH,
+  basePath: "/book-a-call",
+  assetPrefix: "/book-a-call",
   output: "standalone",
   outputFileTracingRoot: process.cwd(),
 };
