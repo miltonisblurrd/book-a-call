@@ -32,16 +32,16 @@ export default function TimePicker({
     <div className="flex flex-col gap-3 p-6 border-l border-gray-100 h-full">
       {/* Header */}
       <div className="flex items-center justify-between mb-1">
-        <div className="font-bold text-[#1B2D6B] font-mono">
+        <div className="font-bold text-[#003399] font-mono">
           <span className="text-base">{format(date, "EEE")}</span>{" "}
-          <span className="text-base text-[#1B2D6B]/50">{format(date, "dd")}</span>
+          <span className="text-base text-[#003399]/50">{format(date, "dd")}</span>
         </div>
-        <div className="flex rounded border-2 border-[#1B2D6B] overflow-hidden text-xs font-bold font-mono">
+        <div className="flex rounded border-2 border-[#003399] overflow-hidden text-xs font-bold font-mono">
           <button
             onClick={() => setFormat12h(true)}
             className={cn(
               "px-2.5 py-1 transition-colors",
-              format12h ? "bg-[#1B2D6B] text-white" : "text-[#1B2D6B] hover:bg-[#1B2D6B]/10"
+              format12h ? "bg-[#003399] text-white" : "text-[#003399] hover:bg-[#003399]/10"
             )}
           >
             12h
@@ -50,7 +50,7 @@ export default function TimePicker({
             onClick={() => setFormat12h(false)}
             className={cn(
               "px-2.5 py-1 transition-colors",
-              !format12h ? "bg-[#1B2D6B] text-white" : "text-[#1B2D6B] hover:bg-[#1B2D6B]/10"
+              !format12h ? "bg-[#003399] text-white" : "text-[#003399] hover:bg-[#003399]/10"
             )}
           >
             24h
@@ -88,8 +88,8 @@ export default function TimePicker({
               className={cn(
                 "w-full py-2.5 rounded text-sm font-bold border-2 transition-all font-mono",
                 isSelected
-                  ? "bg-[#1B2D6B] text-white border-[#1B2D6B]"
-                  : "bg-white text-[#1B2D6B] border-[#1B2D6B]/30 hover:border-[#1B2D6B] hover:bg-[#1B2D6B]/5"
+                  ? "bg-[#003399] text-white border-[#003399]"
+                  : "bg-white text-[#003399] border-[#003399]/30 hover:border-[#003399] hover:bg-[#003399]/5"
               )}
               >
                 {displayLabel(slot)}

@@ -50,10 +50,10 @@ export default function CalendarPicker({
       {/* Month header */}
       <div className="flex items-center justify-between">
         <div className="flex items-baseline gap-2">
-          <span className="text-lg font-bold text-[#1B2D6B] font-mono">
+          <span className="text-lg font-bold text-[#003399] font-mono">
             {format(currentMonth, "MMMM")}
           </span>
-          <span className="text-lg font-bold text-[#1B2D6B]/40 font-mono">
+          <span className="text-lg font-bold text-[#003399]/40 font-mono">
             {format(currentMonth, "yyyy")}
           </span>
         </div>
@@ -61,13 +61,13 @@ export default function CalendarPicker({
           <button
             onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
             disabled={isBefore(startOfMonth(currentMonth), today)}
-            className="w-8 h-8 rounded-full flex items-center justify-center text-[#1B2D6B]/50 hover:text-[#1B2D6B] hover:bg-[#1B2D6B]/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="w-8 h-8 rounded-full flex items-center justify-center text-[#003399]/50 hover:text-[#003399] hover:bg-[#003399]/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
             ‹
           </button>
           <button
             onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
-            className="w-8 h-8 rounded-full flex items-center justify-center text-[#1B2D6B]/50 hover:text-[#1B2D6B] hover:bg-[#1B2D6B]/10 transition-colors"
+            className="w-8 h-8 rounded-full flex items-center justify-center text-[#003399]/50 hover:text-[#003399] hover:bg-[#003399]/10 transition-colors"
           >
             ›
           </button>
@@ -106,16 +106,16 @@ export default function CalendarPicker({
               className={cn(
                 "relative flex items-center justify-center rounded-full w-9 h-9 text-sm font-medium mx-auto transition-all font-mono",
                 available && !selected
-                  ? "text-[#1B2D6B] hover:bg-[#1B2D6B]/10 cursor-pointer"
+                  ? "text-[#003399] hover:bg-[#003399]/10 cursor-pointer"
                   : "",
                 selected
-                  ? "bg-[#1B2D6B] text-white hover:bg-[#1B2D6B]/90"
+                  ? "bg-[#003399] text-white hover:bg-[#003399]/90"
                   : "",
                 !available
                   ? "text-gray-300 cursor-not-allowed"
                   : "",
                 todayFlag && !selected
-                  ? "after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:rounded-full after:bg-[#F5A23A]"
+                  ? "after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:rounded-full after:bg-[#fbcc9b]"
                   : ""
               )}
             >

@@ -83,14 +83,14 @@ export default function IntakeForm({
       </Field>
 
       <Field label="Website" error={errors.website?.message} required>
-        <div className="flex border-2 border-[#1B2D6B]/25 hover:border-[#1B2D6B]/50 focus-within:border-[#1B2D6B] focus-within:ring-2 focus-within:ring-[#1B2D6B]/10 transition-colors bg-white">
-          <span className="px-3 py-2.5 text-sm text-[#1B2D6B]/40 font-mono border-r-2 border-[#1B2D6B]/25 select-none">
+        <div className="flex border-2 border-[#003399]/25 hover:border-[#003399]/50 focus-within:border-[#003399] focus-within:ring-2 focus-within:ring-[#003399]/10 transition-colors bg-white">
+          <span className="px-3 py-2.5 text-sm text-[#003399]/40 font-mono border-r-2 border-[#003399]/25 select-none">
             https://
           </span>
           <input
             {...register("website")}
             placeholder="yoursite.com"
-            className="flex-1 px-3 py-2.5 text-sm text-[#1B2D6B] bg-transparent outline-none font-mono"
+            className="flex-1 px-3 py-2.5 text-sm text-[#003399] bg-transparent outline-none font-mono"
           />
         </div>
       </Field>
@@ -152,14 +152,14 @@ export default function IntakeForm({
         <button
           type="button"
           onClick={onBack}
-          className="text-sm font-bold text-[#1B2D6B]/50 hover:text-[#1B2D6B] transition-colors font-mono"
+          className="text-sm font-bold text-[#003399]/50 hover:text-[#003399] transition-colors font-mono"
         >
           ← Back
         </button>
         <button
           type="submit"
           disabled={submitting}
-          className="px-6 py-2.5 bg-[#1B2D6B] text-white text-sm font-bold hover:bg-[#1B2D6B]/80 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-mono border-2 border-[#1B2D6B]"
+          className="px-6 py-2.5 bg-[#003399] text-white text-sm font-bold hover:bg-[#003399]/80 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-mono border-2 border-[#003399]"
         >
           {submitting ? "Confirming…" : "Confirm →"}
         </button>
@@ -186,9 +186,9 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-bold text-[#1B2D6B] font-mono">
+      <label className="text-sm font-bold text-[#003399] font-mono">
         {label}
-        {required && <span className="text-[#F5A23A] ml-0.5"> *</span>}
+        {required && <span className="text-[#fbcc9b] ml-0.5"> *</span>}
       </label>
       {children}
       {error && <p className="text-xs text-red-500">{error}</p>}
@@ -198,8 +198,8 @@ function Field({
 
 function inputClass(hasError: boolean) {
   return cn(
-    "w-full border-2 px-4 py-2.5 text-sm text-[#1B2D6B] bg-white outline-none transition-colors font-mono",
-    "focus:border-[#1B2D6B] focus:ring-2 focus:ring-[#1B2D6B]/10",
-    hasError ? "border-red-400" : "border-[#1B2D6B]/25 hover:border-[#1B2D6B]/50"
+    "w-full border-2 px-4 py-2.5 text-sm text-[#003399] bg-white outline-none transition-colors font-mono",
+    "focus:border-[#003399] focus:ring-2 focus:ring-[#003399]/10",
+    hasError ? "border-red-400" : "border-[#003399]/25 hover:border-[#003399]/50"
   );
 }

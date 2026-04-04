@@ -27,9 +27,8 @@ const SLIDE = {
   transition: TRANSITION,
 };
 
-// Brand colors matching blurrdstudio.com
-const NAVY = "#1B2D6B";
-const ORANGE = "#F5A23A";
+const NAVY = "#003399";
+const ORANGE = "#fbcc9b";
 
 export default function BookingFlow() {
   const [step, setStep] = useState<BookingStep>("datetime");
@@ -89,32 +88,25 @@ export default function BookingFlow() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f0ede8] flex items-center justify-center p-4 font-mono">
+    <div className="min-h-screen bg-[#f0ede8] flex items-start md:items-center justify-center p-4 py-8 font-mono">
       <div className="w-full max-w-5xl">
 
         {step === "confirmation" && confirmedBooking ? (
-          /* Confirmation — orange banner + navy card */
           <div>
-            <div
-              className="px-6 py-4 mb-0"
-              style={{ backgroundColor: ORANGE }}
-            >
-              <h1 className="text-2xl font-bold tracking-tight" style={{ color: NAVY }}>
+            <div className="px-5 py-4 md:px-6" style={{ backgroundColor: ORANGE }}>
+              <h1 className="text-xl md:text-2xl font-bold tracking-tight" style={{ color: NAVY }}>
                 You&apos;re booked!
               </h1>
             </div>
-            <div style={{ border: `3px solid ${NAVY}` }}>
+            <div style={{ border: `2px solid ${NAVY}` }}>
               <ConfirmationScreen booking={confirmedBooking} />
             </div>
           </div>
         ) : (
           <div>
-            {/* Orange banner — "Let's Chat!" */}
-            <div
-              className="px-6 py-4"
-              style={{ backgroundColor: ORANGE }}
-            >
-              <h1 className="text-2xl font-bold tracking-tight" style={{ color: NAVY }}>
+            {/* Orange banner */}
+            <div className="px-5 py-4 md:px-6" style={{ backgroundColor: ORANGE }}>
+              <h1 className="text-xl md:text-2xl font-bold tracking-tight" style={{ color: NAVY }}>
                 Let&apos;s Chat!
               </h1>
               <p className="text-sm mt-0.5 font-medium" style={{ color: NAVY, opacity: 0.75 }}>
@@ -122,27 +114,27 @@ export default function BookingFlow() {
               </p>
             </div>
 
-            {/* Main card — navy border */}
-            <div style={{ border: `3px solid ${NAVY}`, borderTop: "none" }}>
+            {/* Main card */}
+            <div style={{ border: `2px solid ${NAVY}`, borderTop: "none" }}>
               <div
                 className={
                   step === "datetime"
-                    ? "grid grid-cols-[260px_1fr_260px]"
-                    : "grid grid-cols-[260px_1fr]"
+                    ? "flex flex-col md:grid md:grid-cols-[260px_1fr_260px]"
+                    : "flex flex-col md:grid md:grid-cols-[260px_1fr]"
                 }
               >
-                {/* Sidebar — navy background */}
-                <div style={{ backgroundColor: NAVY }}>
+                {/* Sidebar — desktop only */}
+                <div className="hidden md:block" style={{ backgroundColor: NAVY }}>
                   <Sidebar selectedSlot={step === "form" ? selectedSlot : null} />
                 </div>
 
-                {/* Divider line */}
+                {/* Calendar or Form */}
                 <AnimatePresence mode="wait">
                   {step === "datetime" && (
                     <motion.div
                       key="calendar"
                       {...SLIDE}
-                      style={{ borderLeft: `3px solid ${NAVY}` }}
+                      className="md:[border-left:2px_solid_#003399]"
                     >
                       <CalendarPicker
                         selectedDate={selectedDate}
@@ -151,6 +143,28 @@ export default function BookingFlow() {
                           setSelectedSlot(null);
                         }}
                       />
+
+                      {/* Mobile TimePicker — below calendar */}
+                      <div className="md:hidden" style={{ borderTop: `2px solid ${NAVY}` }}>
+                        {selectedDate ? (
+                          <TimePicker
+                            date={selectedDate}
+                            slots={slots}
+                            selectedSlot={selectedSlot}
+                            onSelectSlot={(slot) => {
+                              setSelectedSlot(slot);
+                              setTimeout(() => setStep("form"), 300);
+                            }}
+                            loading={slotsLoading}
+                          />
+                        ) : (
+                          <div className="flex items-center justify-center py-8 px-6">
+                            <p className="text-sm text-center" style={{ color: NAVY, opacity: 0.5 }}>
+                              Select a date to see available times
+                            </p>
+                          </div>
+                        )}
+                      </div>
                     </motion.div>
                   )}
 
@@ -158,7 +172,7 @@ export default function BookingFlow() {
                     <motion.div
                       key="form"
                       {...SLIDE}
-                      style={{ borderLeft: `3px solid ${NAVY}` }}
+                      className="md:[border-left:2px_solid_#003399]"
                     >
                       <IntakeForm
                         slot={selectedSlot}
@@ -175,9 +189,9 @@ export default function BookingFlow() {
                   )}
                 </AnimatePresence>
 
-                {/* Time picker — step 1 only */}
+                {/* Desktop TimePicker — 3rd column */}
                 {step === "datetime" && (
-                  <div style={{ borderLeft: `3px solid ${NAVY}` }}>
+                  <div className="hidden md:block" style={{ borderLeft: `2px solid ${NAVY}` }}>
                     {selectedDate ? (
                       <TimePicker
                         date={selectedDate}

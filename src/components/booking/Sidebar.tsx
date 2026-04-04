@@ -12,7 +12,7 @@ export default function Sidebar({ selectedSlot }: SidebarProps) {
     <aside className="flex flex-col gap-5 p-6 w-full h-full font-mono">
       {/* Brand */}
       <div>
-        <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#F5A23A" }}>
+        <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#fbcc9b" }}>
           blurrd studio
         </p>
         <h2 className="text-xl font-bold text-white">Intro Call</h2>
