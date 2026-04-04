@@ -8,12 +8,12 @@
  *   3. Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in .env.local
  */
 
-import { google } from "googleapis";
 import * as readline from "readline";
 
 const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const REDIRECT_URI = "http://localhost:3000";
+const SCOPE = "https://www.googleapis.com/auth/calendar";
 
 if (!CLIENT_ID || !CLIENT_SECRET) {
   console.error(
@@ -22,17 +22,16 @@ if (!CLIENT_ID || !CLIENT_SECRET) {
   process.exit(1);
 }
 
-const oauth2Client = new google.auth.OAuth2(
-  CLIENT_ID,
-  CLIENT_SECRET,
-  REDIRECT_URI
-);
-
-const authUrl = oauth2Client.generateAuthUrl({
+const params = new URLSearchParams({
+  client_id: CLIENT_ID,
+  redirect_uri: REDIRECT_URI,
+  response_type: "code",
+  scope: SCOPE,
   access_type: "offline",
   prompt: "consent",
-  scope: ["https://www.googleapis.com/auth/calendar"],
 });
+
+const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?${params}`;
 
 console.log("\n─────────────────────────────────────────────");
 console.log("  Google Calendar OAuth Setup");
@@ -51,12 +50,28 @@ const rl = readline.createInterface({
 rl.question("Paste the code here: ", async (code) => {
   rl.close();
   try {
-    const { tokens } = await oauth2Client.getToken(code.trim());
-    console.log("\n✅  Success! Add these to your .env.local:\n");
+    const res = await fetch("https://oauth2.googleapis.com/token", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        code: code.trim(),
+        client_id: CLIENT_ID!,
+        client_secret: CLIENT_SECRET!,
+        redirect_uri: REDIRECT_URI,
+        grant_type: "authorization_code",
+      }),
+    });
+
+    const tokens = await res.json() as { refresh_token?: string; error?: string };
+
+    if (tokens.error || !tokens.refresh_token) {
+      console.error("\n❌  Failed:", tokens.error ?? "No refresh token returned");
+      return;
+    }
+
+    console.log("\n✅  Success! Add this to your .env.local:\n");
     console.log(`GOOGLE_REFRESH_TOKEN=${tokens.refresh_token}\n`);
-    console.log(
-      "─────────────────────────────────────────────\n"
-    );
+    console.log("─────────────────────────────────────────────\n");
   } catch (err) {
     console.error("\n❌  Failed to exchange code:", err);
   }
