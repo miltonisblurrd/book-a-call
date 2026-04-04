@@ -8,32 +8,35 @@
     "start": "next start",
     "lint": "next lint",
     "auth": "tsx --env-file=.env.local scripts/auth.ts",
+    "preview": "opennextjs-cloudflare build && wrangler dev",
     "deploy": "webflow cloud deploy -e production -m /book-a-call --auto-publish"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.10.0",
+    "@opennextjs/cloudflare": "^1.18.0",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^12.6.3",
+    "googleapis": "^144.0.0",
     "next": "^15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "googleapis": "^144.0.0",
-    "resend": "^4.0.0",
     "react-hook-form": "^7.54.2",
-    "zod": "^3.24.1",
-    "@hookform/resolvers": "^3.10.0",
-    "framer-motion": "^12.6.3",
-    "date-fns": "^4.1.0",
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^2.6.0"
+    "resend": "^4.0.0",
+    "tailwind-merge": "^2.6.0",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "typescript": "^5",
+    "autoprefixer": "^10.4.20",
     "eslint": "^9",
     "eslint-config-next": "^15.2.4",
-    "tailwindcss": "^3.4.1",
-    "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
-    "tsx": "^4.19.2"
+    "tailwindcss": "^3.4.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5",
+    "wrangler": "^4.80.0"
   }
 }
