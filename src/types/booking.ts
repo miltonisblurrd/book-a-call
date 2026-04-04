@@ -27,10 +27,10 @@ export type BookingResult = {
 };
 
 export const HELP_OPTIONS = [
-  "Brand Identity & Kits",
-  "Web & Product Design",
-  "Web & Product Development",
-  "Whole Package — All Three",
+  "Branding",
+  "Landing Page",
+  "Full Site",
+  "Product or App",
 ] as const;
 
 export const BUDGET_OPTIONS = [
