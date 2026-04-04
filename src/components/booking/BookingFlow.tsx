@@ -27,6 +27,10 @@ const SLIDE = {
   transition: TRANSITION,
 };
 
+// Brand colors matching blurrdstudio.com
+const NAVY = "#1B2D6B";
+const ORANGE = "#F5A23A";
+
 export default function BookingFlow() {
   const [step, setStep] = useState<BookingStep>("datetime");
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -85,94 +89,119 @@ export default function BookingFlow() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f0f0f0] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#f0ede8] flex items-center justify-center p-4 font-mono">
       <div className="w-full max-w-5xl">
-        {/* Title */}
-        {step !== "confirmation" && (
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-900">
-              Let&apos;s chat!
-            </h1>
-            <p className="text-gray-500 mt-2 text-base">
-              Walk us through what you&apos;re building.
-              <br />
-              We&apos;ll outline how we can help.
-            </p>
+
+        {step === "confirmation" && confirmedBooking ? (
+          /* Confirmation — orange banner + navy card */
+          <div>
+            <div
+              className="px-6 py-4 mb-0"
+              style={{ backgroundColor: ORANGE }}
+            >
+              <h1 className="text-2xl font-bold tracking-tight" style={{ color: NAVY }}>
+                You&apos;re booked!
+              </h1>
+            </div>
+            <div style={{ border: `3px solid ${NAVY}` }}>
+              <ConfirmationScreen booking={confirmedBooking} />
+            </div>
+          </div>
+        ) : (
+          <div>
+            {/* Orange banner — "Let's Chat!" */}
+            <div
+              className="px-6 py-4"
+              style={{ backgroundColor: ORANGE }}
+            >
+              <h1 className="text-2xl font-bold tracking-tight" style={{ color: NAVY }}>
+                Let&apos;s Chat!
+              </h1>
+              <p className="text-sm mt-0.5 font-medium" style={{ color: NAVY, opacity: 0.75 }}>
+                Walk us through what you&apos;re building. We&apos;ll outline how we can help.
+              </p>
+            </div>
+
+            {/* Main card — navy border */}
+            <div style={{ border: `3px solid ${NAVY}`, borderTop: "none" }}>
+              <div
+                className={
+                  step === "datetime"
+                    ? "grid grid-cols-[260px_1fr_260px]"
+                    : "grid grid-cols-[260px_1fr]"
+                }
+              >
+                {/* Sidebar — navy background */}
+                <div style={{ backgroundColor: NAVY }}>
+                  <Sidebar selectedSlot={step === "form" ? selectedSlot : null} />
+                </div>
+
+                {/* Divider line */}
+                <AnimatePresence mode="wait">
+                  {step === "datetime" && (
+                    <motion.div
+                      key="calendar"
+                      {...SLIDE}
+                      style={{ borderLeft: `3px solid ${NAVY}` }}
+                    >
+                      <CalendarPicker
+                        selectedDate={selectedDate}
+                        onSelectDate={(date) => {
+                          setSelectedDate(date);
+                          setSelectedSlot(null);
+                        }}
+                      />
+                    </motion.div>
+                  )}
+
+                  {step === "form" && selectedSlot && (
+                    <motion.div
+                      key="form"
+                      {...SLIDE}
+                      style={{ borderLeft: `3px solid ${NAVY}` }}
+                    >
+                      <IntakeForm
+                        slot={selectedSlot}
+                        onSubmit={handleConfirm}
+                        onBack={() => setStep("datetime")}
+                        submitting={submitting}
+                      />
+                      {error && (
+                        <p className="text-xs text-red-500 text-center pb-4">
+                          {error}
+                        </p>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Time picker — step 1 only */}
+                {step === "datetime" && (
+                  <div style={{ borderLeft: `3px solid ${NAVY}` }}>
+                    {selectedDate ? (
+                      <TimePicker
+                        date={selectedDate}
+                        slots={slots}
+                        selectedSlot={selectedSlot}
+                        onSelectSlot={(slot) => {
+                          setSelectedSlot(slot);
+                          setTimeout(() => setStep("form"), 300);
+                        }}
+                        loading={slotsLoading}
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-full p-6">
+                        <p className="text-sm text-center" style={{ color: NAVY, opacity: 0.5 }}>
+                          Select a date to see available times
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         )}
-
-        {/* Card */}
-        <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-          {step === "confirmation" && confirmedBooking ? (
-            <ConfirmationScreen booking={confirmedBooking} />
-          ) : (
-            <div
-              className={
-                step === "datetime"
-                  ? "grid grid-cols-[260px_1fr_280px] divide-x divide-gray-100"
-                  : "grid grid-cols-[260px_1fr] divide-x divide-gray-100"
-              }
-            >
-              {/* Sidebar */}
-              <Sidebar selectedSlot={step === "form" ? selectedSlot : null} />
-
-              <AnimatePresence mode="wait">
-                {step === "datetime" && (
-                  <motion.div key="calendar" {...SLIDE}>
-                    <CalendarPicker
-                      selectedDate={selectedDate}
-                      onSelectDate={(date) => {
-                        setSelectedDate(date);
-                        setSelectedSlot(null);
-                      }}
-                    />
-                  </motion.div>
-                )}
-
-                {step === "form" && selectedSlot && (
-                  <motion.div key="form" {...SLIDE}>
-                    <IntakeForm
-                      slot={selectedSlot}
-                      onSubmit={handleConfirm}
-                      onBack={() => setStep("datetime")}
-                      submitting={submitting}
-                    />
-                    {error && (
-                      <p className="text-xs text-red-500 text-center pb-4">
-                        {error}
-                      </p>
-                    )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Time picker — only on step 1 */}
-              {step === "datetime" && (
-                <div>
-                  {selectedDate ? (
-                    <TimePicker
-                      date={selectedDate}
-                      slots={slots}
-                      selectedSlot={selectedSlot}
-                      onSelectSlot={(slot) => {
-                        setSelectedSlot(slot);
-                        // Small delay so user sees the selection before advancing
-                        setTimeout(() => setStep("form"), 300);
-                      }}
-                      loading={slotsLoading}
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center h-full p-6">
-                      <p className="text-sm text-gray-400 text-center">
-                        Select a date to see available times
-                      </p>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-        </div>
       </div>
     </div>
   );

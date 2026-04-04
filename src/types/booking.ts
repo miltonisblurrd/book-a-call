@@ -27,22 +27,17 @@ export type BookingResult = {
 };
 
 export const HELP_OPTIONS = [
-  "Website / Web App Design",
-  "Brand Identity",
-  "UI/UX Design",
-  "Design System",
-  "Webflow Development",
-  "Consulting / Strategy",
-  "Something else",
+  "Brand Identity & Kits",
+  "Web & Product Design",
+  "Web & Product Development",
+  "Whole Package — All Three",
 ] as const;
 
 export const BUDGET_OPTIONS = [
-  "Under $2,500",
-  "$2,500 – $5,000",
-  "$5,000 – $10,000",
+  "$7,500 – $10,000",
   "$10,000 – $25,000",
-  "$25,000+",
-  "Not sure yet",
+  "$25,000 – $50,000",
+  "$50,000 – $100,000+",
 ] as const;
 
 export const TIMELINE_OPTIONS = [

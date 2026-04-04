@@ -12,15 +12,15 @@ export default function ConfirmationScreen({ booking }: ConfirmationScreenProps)
   const end = parseISO(booking.slot.end);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6 p-10 text-center min-h-[400px]">
+    <div className="flex flex-col items-center justify-center gap-6 p-10 text-center min-h-[400px] font-mono">
       {/* Check icon */}
-      <div className="w-16 h-16 rounded-full bg-gray-900 flex items-center justify-center">
+      <div className="w-16 h-16 flex items-center justify-center border-4 border-[#1B2D6B]">
         <svg
           width="28"
           height="28"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="white"
+          stroke="#1B2D6B"
           strokeWidth={2.5}
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -30,18 +30,18 @@ export default function ConfirmationScreen({ booking }: ConfirmationScreenProps)
       </div>
 
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <h2 className="text-2xl font-bold text-[#1B2D6B] mb-2">
           You&apos;re confirmed!
         </h2>
-        <p className="text-gray-500 text-sm max-w-xs mx-auto">
+        <p className="text-[#1B2D6B]/60 text-sm max-w-xs mx-auto">
           A Google Calendar invite has been sent to{" "}
-          <strong className="text-gray-700">{booking.email}</strong>. We&apos;re
+          <strong className="text-[#1B2D6B]">{booking.email}</strong>. We&apos;re
           looking forward to chatting.
         </p>
       </div>
 
       {/* Booking summary */}
-      <div className="bg-gray-50 rounded-2xl px-8 py-5 w-full max-w-sm text-left space-y-3">
+      <div className="border-2 border-[#1B2D6B] px-8 py-5 w-full max-w-sm text-left space-y-3">
         <SummaryRow label="Date" value={format(start, "EEEE, MMMM d, yyyy")} />
         <SummaryRow
           label="Time"
@@ -52,7 +52,7 @@ export default function ConfirmationScreen({ booking }: ConfirmationScreenProps)
         <SummaryRow label="Email" value={booking.email} />
       </div>
 
-      <p className="text-xs text-gray-400">
+      <p className="text-xs text-[#1B2D6B]/40">
         Check your inbox for the calendar invite and Google Meet link.
       </p>
     </div>
@@ -61,9 +61,9 @@ export default function ConfirmationScreen({ booking }: ConfirmationScreenProps)
 
 function SummaryRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex justify-between gap-4 text-sm">
-      <span className="text-gray-400 font-medium">{label}</span>
-      <span className="text-gray-900 text-right">{value}</span>
+    <div className="flex justify-between gap-4 text-sm border-b border-[#1B2D6B]/10 pb-2 last:border-0 last:pb-0">
+      <span className="text-[#1B2D6B]/50 font-bold">{label}</span>
+      <span className="text-[#1B2D6B] text-right font-medium">{value}</span>
     </div>
   );
 }

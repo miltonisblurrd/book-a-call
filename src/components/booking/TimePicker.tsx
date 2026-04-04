@@ -32,16 +32,16 @@ export default function TimePicker({
     <div className="flex flex-col gap-3 p-6 border-l border-gray-100 h-full">
       {/* Header */}
       <div className="flex items-center justify-between mb-1">
-        <div className="font-semibold text-gray-900">
+        <div className="font-bold text-[#1B2D6B] font-mono">
           <span className="text-base">{format(date, "EEE")}</span>{" "}
-          <span className="text-base text-gray-500">{format(date, "dd")}</span>
+          <span className="text-base text-[#1B2D6B]/50">{format(date, "dd")}</span>
         </div>
-        <div className="flex rounded-lg border border-gray-200 overflow-hidden text-xs font-medium">
+        <div className="flex rounded border-2 border-[#1B2D6B] overflow-hidden text-xs font-bold font-mono">
           <button
             onClick={() => setFormat12h(true)}
             className={cn(
               "px-2.5 py-1 transition-colors",
-              format12h ? "bg-gray-900 text-white" : "text-gray-500 hover:bg-gray-50"
+              format12h ? "bg-[#1B2D6B] text-white" : "text-[#1B2D6B] hover:bg-[#1B2D6B]/10"
             )}
           >
             12h
@@ -50,7 +50,7 @@ export default function TimePicker({
             onClick={() => setFormat12h(false)}
             className={cn(
               "px-2.5 py-1 transition-colors",
-              !format12h ? "bg-gray-900 text-white" : "text-gray-500 hover:bg-gray-50"
+              !format12h ? "bg-[#1B2D6B] text-white" : "text-[#1B2D6B] hover:bg-[#1B2D6B]/10"
             )}
           >
             24h
@@ -85,12 +85,12 @@ export default function TimePicker({
               <button
                 key={slot.start}
                 onClick={() => onSelectSlot(slot)}
-                className={cn(
-                  "w-full py-2.5 rounded-xl text-sm font-medium border transition-all",
-                  isSelected
-                    ? "bg-gray-900 text-white border-gray-900"
-                    : "bg-white text-gray-800 border-gray-200 hover:border-gray-400 hover:bg-gray-50"
-                )}
+              className={cn(
+                "w-full py-2.5 rounded text-sm font-bold border-2 transition-all font-mono",
+                isSelected
+                  ? "bg-[#1B2D6B] text-white border-[#1B2D6B]"
+                  : "bg-white text-[#1B2D6B] border-[#1B2D6B]/30 hover:border-[#1B2D6B] hover:bg-[#1B2D6B]/5"
+              )}
               >
                 {displayLabel(slot)}
               </button>

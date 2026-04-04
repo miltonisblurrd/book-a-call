@@ -16,7 +16,9 @@ import {
 const schema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Valid email is required"),
-  website: z.string().url("Enter a valid URL").or(z.literal("")),
+  website: z.string()
+    .transform((val) => val ? (val.startsWith("http") ? val : `https://${val}`) : val)
+    .pipe(z.string().url("Enter a valid URL").or(z.literal(""))),
   help: z.string().min(1, "Please select an option"),
   budget: z.string().min(1, "Please select a budget"),
   timeline: z.string().min(1, "Please select a timeline"),
@@ -81,11 +83,16 @@ export default function IntakeForm({
       </Field>
 
       <Field label="Website" error={errors.website?.message} required>
-        <input
-          {...register("website")}
-          placeholder="https://yoursite.com"
-          className={inputClass(!!errors.website)}
-        />
+        <div className="flex border-2 border-[#1B2D6B]/25 hover:border-[#1B2D6B]/50 focus-within:border-[#1B2D6B] focus-within:ring-2 focus-within:ring-[#1B2D6B]/10 transition-colors bg-white">
+          <span className="px-3 py-2.5 text-sm text-[#1B2D6B]/40 font-mono border-r-2 border-[#1B2D6B]/25 select-none">
+            https://
+          </span>
+          <input
+            {...register("website")}
+            placeholder="yoursite.com"
+            className="flex-1 px-3 py-2.5 text-sm text-[#1B2D6B] bg-transparent outline-none font-mono"
+          />
+        </div>
       </Field>
 
       <Field label="How can we help?" error={errors.help?.message} required>
@@ -145,16 +152,16 @@ export default function IntakeForm({
         <button
           type="button"
           onClick={onBack}
-          className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors"
+          className="text-sm font-bold text-[#1B2D6B]/50 hover:text-[#1B2D6B] transition-colors font-mono"
         >
-          Back
+          ← Back
         </button>
         <button
           type="submit"
           disabled={submitting}
-          className="px-6 py-2.5 rounded-xl bg-gray-900 text-white text-sm font-semibold hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="px-6 py-2.5 bg-[#1B2D6B] text-white text-sm font-bold hover:bg-[#1B2D6B]/80 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-mono border-2 border-[#1B2D6B]"
         >
-          {submitting ? "Confirming…" : "Confirm"}
+          {submitting ? "Confirming…" : "Confirm →"}
         </button>
       </div>
 
@@ -179,9 +186,9 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-medium text-gray-700">
+      <label className="text-sm font-bold text-[#1B2D6B] font-mono">
         {label}
-        {required && <span className="text-gray-400 ml-0.5"> *</span>}
+        {required && <span className="text-[#F5A23A] ml-0.5"> *</span>}
       </label>
       {children}
       {error && <p className="text-xs text-red-500">{error}</p>}
@@ -191,8 +198,8 @@ function Field({
 
 function inputClass(hasError: boolean) {
   return cn(
-    "w-full rounded-xl border px-4 py-2.5 text-sm text-gray-900 bg-white outline-none transition-colors",
-    "focus:border-gray-400 focus:ring-2 focus:ring-gray-100",
-    hasError ? "border-red-300" : "border-gray-200"
+    "w-full border-2 px-4 py-2.5 text-sm text-[#1B2D6B] bg-white outline-none transition-colors font-mono",
+    "focus:border-[#1B2D6B] focus:ring-2 focus:ring-[#1B2D6B]/10",
+    hasError ? "border-red-400" : "border-[#1B2D6B]/25 hover:border-[#1B2D6B]/50"
   );
 }
