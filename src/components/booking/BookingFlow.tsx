@@ -40,7 +40,7 @@ export default function BookingFlow() {
   const [confirmedBooking, setConfirmedBooking] = useState<BookingPayload | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const BASE = "/book-a-call";
+  const BASE = "";
 
   const fetchSlots = useCallback(async (date: Date) => {
     setSlotsLoading(true);
