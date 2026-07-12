@@ -8,7 +8,7 @@ const ROUTE_MAP: Record<string, string> = {
   "services/ongoing-support.html": "/services/ongoing-support",
   "blog.html": "/blog",
   "faqs.html": "/faqs",
-  "learn.html": "/learn",
+  "learn.html": "/blog",
   "terms-of-service.html": "/terms-of-service",
   "blurrd-studio-advantages.html": "/blurrd-studio-advantages",
   "seo.html": "/seo",
@@ -57,19 +57,65 @@ export function processWebflowHtml(html: string, depth = 0): string {
   return result;
 }
 
+function getMetaContent(
+  html: string,
+  key: string,
+  attr: "name" | "property"
+): string | undefined {
+  const regex = new RegExp(
+    `<meta[^>]+${attr}=["']${key}["'][^>]+content=["']([^"']*)["']|<meta[^>]+content=["']([^"']*)["'][^>]+${attr}=["']${key}["']`,
+    "i"
+  );
+  const match = html.match(regex);
+  return match?.[1] || match?.[2];
+}
+
+function getLinkHref(html: string, rel: string): string | undefined {
+  const regex = new RegExp(
+    `<link[^>]+rel=["']${rel}["'][^>]+href=["']([^"']*)["']|<link[^>]+href=["']([^"']*)["'][^>]+rel=["']${rel}["']`,
+    "i"
+  );
+  const match = html.match(regex);
+  return match?.[1] || match?.[2];
+}
+
 export function extractMetadata(html: string) {
   const titleMatch = html.match(/<title>([^<]*)<\/title>/i);
-  const descMatch = html.match(
-    /<meta[^>]+name="description"[^>]+content="([^"]*)"/i
-  );
-  const ogImageMatch = html.match(
-    /<meta[^>]+property="og:image"[^>]+content="([^"]*)"/i
-  );
+  const title =
+    getMetaContent(html, "og:title", "property") ||
+    titleMatch?.[1]?.replace(/&amp;/g, "&") ||
+    "BLURRD Studio";
+  const description =
+    getMetaContent(html, "description", "name") ||
+    getMetaContent(html, "og:description", "property") ||
+    "";
+  const ogImage =
+    getMetaContent(html, "og:image", "property") ||
+    getMetaContent(html, "twitter:image", "name");
+  const canonical = getLinkHref(html, "canonical");
+
   return {
-    title: titleMatch?.[1]?.replace(/&amp;/g, "&") || "BLURRD Studio",
-    description: descMatch?.[1]?.replace(/&amp;/g, "&") || "",
-    ogImage: ogImageMatch?.[1],
+    title,
+    description: description.replace(/&amp;/g, "&"),
+    ogImage,
+    canonical,
   };
+}
+
+export function extractJsonLd(html: string): Record<string, unknown>[] {
+  const blocks: Record<string, unknown>[] = [];
+  const regex = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/gi;
+  let match: RegExpExecArray | null;
+
+  while ((match = regex.exec(html)) !== null) {
+    try {
+      blocks.push(JSON.parse(match[1].trim()) as Record<string, unknown>);
+    } catch {
+      // Skip invalid JSON-LD blocks from source HTML.
+    }
+  }
+
+  return blocks;
 }
 
 export function extractMainContent(html: string): string {

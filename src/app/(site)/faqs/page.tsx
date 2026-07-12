@@ -1,35 +1,31 @@
+import JsonLd from "@/components/JsonLd";
 import Link from "next/link";
 import { getAllFaqs } from "@/lib/content";
+import { breadcrumbSchema, buildPageMetadata, faqPageSchema } from "@/lib/seo";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "FAQs at BLURRD Studio",
   description:
     "Have questions about BLURRD Studio services, process, or pricing? Browse frequently asked questions or reach out directly.",
-};
+  path: "/faqs",
+});
 
 export default function FaqsPage() {
   const faqs = getAllFaqs();
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.title,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.content.replace(/\n+/g, " ").trim() || faq.description,
-      },
-    })),
-  };
+  const jsonLd = [
+    faqPageSchema(
+      faqs.map((faq) => ({
+        question: faq.title,
+        answer: faq.content.replace(/\n+/g, " ").trim() || faq.description,
+      }))
+    ),
+    breadcrumbSchema([{ name: "FAQs", path: "/faqs" }]),
+  ];
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <section className="section u-p-40-hero">
         <div className="container">
           <img

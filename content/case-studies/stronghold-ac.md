@@ -1,90 +1,68 @@
 ---
-title: "Stronghold HVAC | Web Design, Development & SEO"
-description: ""
-client: "stronghold-ac"
+title: "Stronghold HVAC Case Study | Web Design & SEO"
+description: "How BLURRD designed Stronghold HVAC's conversion-focused Webflow site and built an SEO foundation for local visibility."
+client: "Stronghold HVAC"
+ogImage: "/images/Frame-47333-1_1.avif"
+caseStudy:
+  eyebrow: "Stronghold HVAC · Home Services"
+  headline: "A conversion-focused HVAC website built for local search and trust."
+  summary: "Stronghold HVAC needed a site that looked professional, explained services clearly, and helped the business show up when local customers searched for help."
+  industry: "HVAC & home services"
+  engagement: "Website design + SEO"
+  role: "Web design and SEO partner"
+  services:
+    - "Webflow design"
+    - "Webflow development"
+    - "Conversion-focused UX"
+    - "Local SEO foundation"
+    - "Service page architecture"
+  challengeTitle: "Win local customers in a crowded service market."
+  challenge: "HVAC buyers often choose the company that looks most credible and makes it easiest to request service. Stronghold needed a site that could compete on both fronts."
+  approachTitle: "Design for clarity, urgency, and local discovery."
+  approach: "We built a clean Webflow experience with strong service pages, clear calls to action, and SEO fundamentals aimed at local search performance."
+  outcomes:
+    - "A professional site that supports service inquiries."
+    - "Clear service messaging for faster buyer decisions."
+    - "SEO foundations for local search visibility."
+  deliverables:
+    - "Webflow website"
+    - "Service page templates"
+    - "Local SEO setup"
+    - "Responsive UI"
+    - "Conversion-focused homepage"
+  resultSummary: "Stronghold HVAC launched with a site built to earn trust locally and convert visitors searching for HVAC help."
+  ctaHeadline: "Need a Local Service Site That Converts?"
 ---
 
 <section class="section u-p-40-hero">
-        <div class="container"><img src="../images/Group-27-2.svg" loading="eager" alt="blurrd studio las vegas" class="image-hero-logo">
+        <div class="container">
           <p class="text-paragraph u-extra-bold margin-19">Our Involvement:</p>
-          <p class="text-paragraph u-text-gray">BLURRD Studio worked with Stronghold HVAC, a Southern California-based company, to design and develop a modern, conversion-focused website in Webflow. Our team created a clean, user-friendly experience that reflects their professionalism and services. We also set up and established their SEO foundation, positioning Stronghold HVAC for lasting online visibility and local search success.</p>
+          <p class="text-paragraph u-text-gray">BLURRD worked with Stronghold HVAC to design and develop a modern, conversion-focused Webflow site and establish an SEO foundation for local search success in Southern California.</p>
         </div>
       </section>
-      <section class="section u-p-40-hero">
+<section class="section u-p-40-hero">
         <div class="container">
           <div class="wrapper-orange">
-            <h2 class="h2">Project Images</h2>
+            <h2 class="h2">The Work</h2>
           </div>
           <div class="wrapper-blue u-mb-2 u-scroll-none">
             <div class="wrapper-blue-header u-p-20-around">
               <div class="wrapper-header u-mb-0">
-                <p class="text-paragraph u-extra-bold u-text-white u-mb-0 u-mr-2">StrongHold HVAC</p>
+                <p class="text-paragraph u-extra-bold u-text-white u-mb-0 u-mr-2">Local HVAC site built to convert</p>
               </div>
             </div>
-            <div class="grid-2"><img src="../images/Frame-47411-1_1.avif" loading="lazy" sizes="(max-width: 767px) 100vw, 509px" srcset="../images/Frame-47411-1_1Frame-47411-1.avif 500w, ../images/Frame-47411-1_1.avif 1060w" alt="" class="image-case"><img src="../images/Frame-47408-1_1.avif" loading="lazy" sizes="(max-width: 767px) 100vw, 509px" height="Auto" alt="" srcset="../images/Frame-47408-1_1Frame-47408-1.avif 500w, ../images/Frame-47408-1_1.avif 1060w" class="image-case"><img src="../images/Group-47631-1_1.avif" loading="lazy" alt="" class="image-case"><img src="../images/Frame-47409-1_1.avif" loading="lazy" alt="" class="image-case"><img src="../images/Frame-47413_1.avif" loading="lazy" id="w-node-f75a0903-598c-cf21-d554-e6f0189298a1-c314c886" alt="" class="image-case"><img src="../images/Frame-47407-1_1.avif" loading="lazy" id="w-node-f75a0903-598c-cf21-d554-e6f0189298a2-c314c886" sizes="(max-width: 767px) 100vw, 509px" alt="" srcset="../images/Frame-47407-1_1Frame-47407-1.avif 500w, ../images/Frame-47407-1_1.avif 1060w" class="image-case"><img src="../images/Frame-47410_1.avif" loading="lazy" sizes="(max-width: 767px) 100vw, 509px" srcset="../images/Frame-47410_1Frame-47410.avif 500w, ../images/Frame-47410_1.avif 1060w" alt="" class="image-case"><img src="../images/Frame-47414_1.avif" loading="lazy" sizes="(max-width: 767px) 100vw, 509px" srcset="../images/Frame-47414_1Frame-47414.avif 500w, ../images/Frame-47414_1.avif 1060w" alt="" class="image-case"></div>
-          </div>
-        </div>
-      </section>
-      <section class="section u-p-40-hero">
-        <div class="container">
-          <div class="wrapper-orange">
-            <h2 class="h2">More Case Studies</h2>
-          </div>
-          <div class="wrapper-blue">
-            <div class="wrapper-blue-header u-p-20-around">
-              <div class="wrapper-header u-mb-0">
-                <p class="text-paragraph u-extra-bold u-text-white u-mb-0 u-mr-2"><strong>View Our Other Projects</strong></p>
-              </div>
-            </div>
-            <div class="grid-2">
-              <a href="../case-studies/rakuten.html" class="w-inline-block">
-                <div data-w-id="1258a98f-2f91-6bcb-f144-d700d58c112c" class="wrapper-case-slider rsl"><img src="../images/Frame-47318-2_1.avif" loading="lazy" sizes="(max-width: 1080px) 100vw, 1080px" srcset="../images/Frame-47318-2_1Frame-47318-2.avif 500w, ../images/Frame-47318-2_1.avif 1080w" alt="" class="image-case-scroll">
-                  <div style="opacity:0;display:none" class="bg-cover rakuten"><img src="../images/Clip-path-group.svg" loading="lazy" alt="" class="image-bg-cover-logo"></div>
-                </div>
-              </a>
-              <a href="../case-studies/freedom-tax-strategies.html" class="w-inline-block">
-                <div data-w-id="1258a98f-2f91-6bcb-f144-d700d58c1131" class="wrapper-case-slider tax"><img src="../images/Frame-47361_1.avif" loading="lazy" sizes="(max-width: 1080px) 100vw, 1080px" srcset="../images/Frame-47361_1Frame-47361.avif 500w, ../images/Frame-47361_1.avif 1080w" alt="" class="image-case-scroll">
-                  <div style="opacity:0;display:none" class="bg-cover freedom"><img src="../images/6840f944b76ccc8624eb8608_freedom-red-logo-02-p-2000-1.svg" loading="lazy" alt="" class="image-bg-cover-logo"></div>
-                </div>
-              </a>
-              <a href="../case-studies/glass-cactus-marketing.html" class="w-inline-block">
-                <div data-w-id="1258a98f-2f91-6bcb-f144-d700d58c1136" class="wrapper-case-slider glass"><img src="../images/Frame-47364-1_1.avif" loading="lazy" sizes="(max-width: 1080px) 100vw, 1080px" srcset="../images/Frame-47364-1_1Frame-47364-1.avif 500w, ../images/Frame-47364-1_1.avif 1080w" alt="" class="image-case-scroll">
-                  <div style="opacity:0;display:none" class="bg-cover glass"><img src="../images/Glass-cactus-logos-tagline-4c-1-1.svg" loading="lazy" alt="" class="image-bg-cover-logo"></div>
-                </div>
-              </a>
-              <a href="../case-studies/firstmile.html" class="w-inline-block">
-                <div data-w-id="1258a98f-2f91-6bcb-f144-d700d58c113b" class="wrapper-case-slider fm"><img src="../images/Frame-47315_1.avif" loading="lazy" sizes="(max-width: 1080px) 100vw, 1080px" srcset="../images/Frame-47315_1Frame-47315.avif 500w, ../images/Frame-47315_1.avif 1080w" alt="" class="image-case-scroll">
-                  <div style="opacity:0;display:none" class="bg-cover mile"><img src="../images/64cd224f52d06dbfde1bba25_firstmile-logo-only-11-4.svg" loading="lazy" alt="" class="image-bg-cover-logo"></div>
-                </div>
-              </a>
-              <a href="../case-studies/prcl-world.html" class="w-inline-block">
-                <div data-w-id="1258a98f-2f91-6bcb-f144-d700d58c1140" class="wrapper-case-slider"><img src="../images/Frame-47349_1.avif" loading="lazy" sizes="(max-width: 1080px) 100vw, 1080px" srcset="../images/Frame-47349_1Frame-47349.avif 500w, ../images/Frame-47349_1.avif 1080w" alt="" class="image-case-scroll">
-                  <div style="opacity:0;display:none" class="bg-cover prcl"><img src="../images/Group-436-1.svg" loading="lazy" alt="" class="image-bg-cover-logo"></div>
-                </div>
-              </a>
-              <a href="../case-studies/how-much.html" class="w-inline-block">
-                <div data-w-id="1258a98f-2f91-6bcb-f144-d700d58c1145" class="wrapper-case-slider how"><img src="../images/Frame-47327-3_1.avif" loading="lazy" sizes="(max-width: 1080px) 100vw, 1080px" srcset="../images/Frame-47327-3_1Frame-47327-3.avif 500w, ../images/Frame-47327-3_1.avif 1080w" alt="" class="image-case-scroll">
-                  <div style="opacity:0;display:none" class="bg-cover how"><img src="../images/Frame-9.svg" loading="lazy" alt="" class="image-bg-cover-logo"></div>
-                </div>
-              </a>
-              <a href="../case-studies/stronghold-ac.html" aria-current="page" class="w-inline-block w--current">
-                <div data-w-id="1258a98f-2f91-6bcb-f144-d700d58c114a" class="wrapper-case-slider"><img src="../images/Frame-47333-1_1.avif" loading="lazy" sizes="(max-width: 1080px) 100vw, 1080px" srcset="../images/Frame-47333-1_1Frame-47333-1.avif 500w, ../images/Frame-47333-1_1.avif 1080w" alt="" class="image-case-scroll">
-                  <div style="opacity:0;display:none" class="bg-cover hvac"><img src="../images/Group-65-2.avif" loading="lazy" alt="" class="image-bg-cover-logo"></div>
-                </div>
-              </a>
-              <a href="#" class="w-inline-block">
-                <div class="wrapper-case-slider"><img src="../images/Frame-47386.svg" loading="lazy" alt="" class="image-case-scroll"></div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="section u-p-40-hero">
-        <div class="container"><img loading="lazy" src="../images/Group-47609-1.svg" alt="" class="iimage-reviews u-text-center">
-          <h1 class="h1 u-text-center u-mt-2"><strong class="bold-text">Let’s Build to Scale.</strong></h1>
-          <div class="wrapper-buttons u-mt-2 u-text-center">
-            <a href="https://www.blurrdstudio.com/book-a-call" class="btn u-mr-2 w-button">Book a 15 Min. Call</a>
-            <a href="mailto:milton@Blurrdstudio.com?subject=Question%20for%20Milton%20at%20BLURRD%20studio" class="btn white w-button">Send Me An Email</a>
+            <figure class="case-study-visual">
+              <img src="../images/Frame-47411-1_1.avif" loading="lazy" alt="Stronghold HVAC homepage design" class="image-one-window">
+              <figcaption><span>01</span><strong>Homepage</strong> — The homepage communicates services and service area quickly for homeowners searching for HVAC help.</figcaption>
+            </figure>
+            <figure class="case-study-visual">
+              <img src="../images/Frame-47408-1_1.avif" loading="lazy" alt="Stronghold HVAC service page design" class="image-one-window">
+              <figcaption><span>02</span><strong>Service pages</strong> — Dedicated service pages help prospects understand offerings and take action with confidence.</figcaption>
+            </figure>
+            <figure class="case-study-visual">
+              <img src="../images/Group-47631-1_1.avif" loading="lazy" alt="Stronghold HVAC responsive website" class="image-one-window">
+              <figcaption><span>03</span><strong>Local SEO ready</strong> — The site structure supports local search visibility across Southern California service areas.</figcaption>
+            </figure>
           </div>
         </div>
       </section>

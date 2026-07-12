@@ -1,25 +1,23 @@
 import HomeFeaturedFaqs from "@/components/HomeFeaturedFaqs";
+import JsonLd from "@/components/JsonLd";
 import ServicesPricingTabs from "@/components/ServicesPricingTabs";
 import WebflowContent from "@/components/WebflowContent";
 import WorkSection from "@/components/WorkSection";
-import { getWebflowPage } from "@/lib/get-webflow-page";
+import { getWebflowPageSeo } from "@/lib/webflow-page-seo";
+import { localBusinessSchema } from "@/lib/seo";
 import { splitHomepageAtFeaturedFaqs } from "@/lib/split-homepage-content";
-import type { Metadata } from "next";
 
-const page = getWebflowPage("index.html");
+const { page, metadata, jsonLd } = getWebflowPageSeo("index.html", "/");
 const { before, pricing, after } = splitHomepageAtFeaturedFaqs(page.content);
+const pageJsonLd =
+  jsonLd.length > 0 ? jsonLd : [localBusinessSchema()];
 
-export const metadata: Metadata = {
-  title: page.metadata.title.replace(" | BLURRD Studio", "").replace(" — BLURRD Studio", ""),
-  description: page.metadata.description,
-  openGraph: page.metadata.ogImage
-    ? { images: [page.metadata.ogImage] }
-    : undefined,
-};
+export { metadata };
 
 export default function Page() {
   return (
     <>
+      <JsonLd data={pageJsonLd} />
       <WebflowContent html={before} depth={0} />
       <WorkSection />
       {pricing ? (

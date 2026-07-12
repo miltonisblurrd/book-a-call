@@ -1,25 +1,20 @@
 import AboutPageEnhancements from "@/components/AboutPageEnhancements";
+import JsonLd from "@/components/JsonLd";
 import WebflowContent from "@/components/WebflowContent";
 import { getWebflowPage } from "@/lib/get-webflow-page";
+import { getWebflowPageSeo } from "@/lib/webflow-page-seo";
 import { stripEmbeddedScripts } from "@/lib/strip-embedded-scripts";
-import type { Metadata } from "next";
 
-const page = getWebflowPage("about.html");
+const { metadata, jsonLd } = getWebflowPageSeo("about.html", "/about");
 
-export const metadata: Metadata = {
-  title: page.metadata.title.replace(" | BLURRD Studio", "").replace(" — BLURRD Studio", ""),
-  description: page.metadata.description,
-  openGraph: page.metadata.ogImage
-    ? { images: [page.metadata.ogImage] }
-    : undefined,
-};
+export { metadata };
 
 export default function Page() {
-  // Read fresh on each request so dev picks up about.html edits without stale module cache.
   const { content } = getWebflowPage("about.html");
 
   return (
     <>
+      {jsonLd.length > 0 ? <JsonLd data={jsonLd} /> : null}
       <WebflowContent html={stripEmbeddedScripts(content)} depth={0} />
       <AboutPageEnhancements />
     </>

@@ -1,7 +1,9 @@
+import JsonLd from "@/components/JsonLd";
 import Footer from "@/components/Footer";
 import GlowCode from "@/components/GlowCode";
 import Navigation from "@/components/Navigation";
 import WebflowSlider from "@/components/WebflowSlider";
+import { organizationSchema, websiteSchema } from "@/lib/seo";
 import Script from "next/script";
 
 export default function SiteLayout({
@@ -11,6 +13,7 @@ export default function SiteLayout({
 }) {
   return (
     <>
+      <JsonLd data={[organizationSchema(), websiteSchema()]} />
       <div className="page-wrapper code">
         <Navigation />
         <main className="body-wrapper code">

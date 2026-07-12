@@ -1,5 +1,11 @@
 import CaseStudyTemplate from "@/components/CaseStudyTemplate";
+import JsonLd from "@/components/JsonLd";
 import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/content";
+import {
+  articleSchema,
+  breadcrumbSchema,
+  buildPageMetadata,
+} from "@/lib/seo";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -13,16 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const cs = getCaseStudyBySlug(slug);
   if (!cs) return {};
-  return {
+
+  return buildPageMetadata({
     title: cs.title,
     description: cs.description,
-    openGraph: {
-      title: cs.title,
-      description: cs.description,
-      type: "article",
-      images: cs.ogImage ? [cs.ogImage] : undefined,
-    },
-  };
+    path: `/case-studies/${slug}`,
+    ogImage: cs.ogImage,
+    type: "article",
+  });
 }
 
 export default async function CaseStudyPage({ params }: Props) {
@@ -30,24 +34,23 @@ export default async function CaseStudyPage({ params }: Props) {
   const cs = getCaseStudyBySlug(slug);
   if (!cs) notFound();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: cs.title,
-    description: cs.description,
-    about: cs.client,
-    author: {
-      "@type": "Organization",
-      name: "BLURRD Studio",
-    },
-  };
+  const path = `/case-studies/${slug}`;
+  const jsonLd = [
+    articleSchema({
+      title: cs.title,
+      description: cs.description,
+      path,
+      image: cs.ogImage,
+    }),
+    breadcrumbSchema([
+      { name: "Case Studies", path: "/about" },
+      { name: cs.client || cs.title, path },
+    ]),
+  ];
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <CaseStudyTemplate caseStudy={cs} />
     </>
   );

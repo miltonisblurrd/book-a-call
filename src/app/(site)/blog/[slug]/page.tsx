@@ -1,5 +1,12 @@
 import BlogRecentArticles from "@/components/BlogRecentArticles";
+import JsonLd from "@/components/JsonLd";
 import { getAllPosts, getPostBySlug, getRecentPosts } from "@/lib/content";
+import {
+  articleSchema,
+  breadcrumbSchema,
+  buildPageMetadata,
+  faqPageSchema,
+} from "@/lib/seo";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -25,21 +32,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
-  return {
+
+  return buildPageMetadata({
     title: post.title,
     description: post.description,
-    openGraph: {
-      title: post.title,
-      description: post.description,
-      type: "article",
-      images: post.ogImage ? [post.ogImage] : undefined,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.description,
-    },
-  };
+    path: `/blog/${slug}`,
+    ogImage: post.ogImage,
+    type: "article",
+  });
 }
 
 export default async function BlogPostPage({ params }: Props) {
@@ -48,49 +48,37 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   const recentPosts = getRecentPosts(slug, 3);
+  const path = `/blog/${slug}`;
 
   const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      headline: post.title,
+    articleSchema({
+      title: post.title,
       description: post.description,
+      path,
+      image: post.ogImage,
       datePublished: post.date,
       dateModified: post.date,
-      author: {
-        "@type": "Person",
-        name: post.author || "Milton Amaya",
-      },
-      publisher: {
-        "@type": "Organization",
-        name: "BLURRD Studio",
-      },
-      image: post.ogImage,
-    },
+      author: post.author,
+    }),
+    breadcrumbSchema([
+      { name: "Blog", path: "/blog" },
+      { name: post.title, path },
+    ]),
     ...(post.faqs?.length
       ? [
-          {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: post.faqs.map((faq) => ({
-              "@type": "Question",
-              name: faq.question,
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer,
-              },
-            })),
-          },
+          faqPageSchema(
+            post.faqs.map((faq) => ({
+              question: faq.question,
+              answer: faq.answer,
+            }))
+          ),
         ]
       : []),
   ];
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <section className="section u-p-40-hero">
         <div className="container">
           <div className="wrapper-breadcrumb u-mb-2">

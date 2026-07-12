@@ -1,10 +1,16 @@
+import JsonLd from "@/components/JsonLd";
+import PageCta from "@/components/PageCta";
+import RelatedFaqs from "@/components/RelatedFaqs";
 import { getAllFaqs, getFaqBySlug } from "@/lib/content";
+import {
+  breadcrumbSchema,
+  buildPageMetadata,
+  faqPageSchema,
+} from "@/lib/seo";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import RelatedFaqs from "@/components/RelatedFaqs";
-import PageCta from "@/components/PageCta";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -16,10 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const faq = getFaqBySlug(slug);
   if (!faq) return {};
-  return {
+
+  return buildPageMetadata({
     title: faq.titleTag || faq.title,
     description: faq.metaDescription || faq.description,
-  };
+    path: `/faqs/${slug}`,
+  });
 }
 
 export default async function FaqDetailPage({ params }: Props) {
@@ -27,27 +35,19 @@ export default async function FaqDetailPage({ params }: Props) {
   const faq = getFaqBySlug(slug);
   if (!faq) notFound();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: faq.title,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: faq.content.replace(/\n+/g, " ").trim() || faq.description,
-        },
-      },
-    ],
-  };
+  const path = `/faqs/${slug}`;
+  const answerText = faq.content.replace(/\n+/g, " ").trim() || faq.description;
+  const jsonLd = [
+    faqPageSchema([{ question: faq.title, answer: answerText }]),
+    breadcrumbSchema([
+      { name: "FAQs", path: "/faqs" },
+      { name: faq.title, path },
+    ]),
+  ];
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <section className="section u-p-40-hero">
         <div className="container">
           <div className="wrapper-breadcrumb u-mb-2">

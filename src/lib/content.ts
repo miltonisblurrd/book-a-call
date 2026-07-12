@@ -48,24 +48,6 @@ export type ContentItem = {
   content: string;
 };
 
-export type TutorialItem = ContentItem & {
-  youtubeId: string;
-  thumbnail?: string;
-};
-
-export type StreamItem = ContentItem & {
-  platform?: string;
-  streamUrl: string;
-  embedUrl?: string;
-  thumbnail?: string;
-};
-
-export type RepoItem = ContentItem & {
-  repoUrl: string;
-  language?: string;
-  topics?: string[];
-};
-
 function readMarkdownFiles(subdir: string): ContentItem[] {
   const dir = path.join(contentDirectory, subdir);
   if (!fs.existsSync(dir)) return [];
@@ -236,84 +218,4 @@ export function getAllCaseStudies() {
 
 export function getCaseStudyBySlug(slug: string) {
   return getAllCaseStudies().find((cs) => cs.slug === slug) || null;
-}
-
-function readTypedMarkdownFiles<T extends ContentItem>(
-  subdir: string,
-  mapFields: (data: Record<string, unknown>, base: ContentItem) => T
-): T[] {
-  const dir = path.join(contentDirectory, subdir);
-  if (!fs.existsSync(dir)) return [];
-
-  return fs
-    .readdirSync(dir)
-    .filter((file) => file.endsWith(".md"))
-    .map((file) => {
-      const slug = file.replace(/\.md$/, "");
-      const raw = fs.readFileSync(path.join(dir, file), "utf8");
-      const { data, content } = matter(raw);
-      const base: ContentItem = {
-        slug,
-        title: (data.title as string) || slug,
-        description: (data.description as string) || "",
-        date: data.date as string | undefined,
-        category: data.category as string | undefined,
-        tags: data.tags as string[] | undefined,
-        ogImage: data.ogImage as string | undefined,
-        content,
-      };
-      return mapFields(data as Record<string, unknown>, base);
-    })
-    .sort((a, b) => {
-      if (a.date && b.date) return b.date.localeCompare(a.date);
-      return a.title.localeCompare(b.title);
-    });
-}
-
-export function getAllTutorials() {
-  return readTypedMarkdownFiles<TutorialItem>("tutorials", (data, base) => ({
-    ...base,
-    youtubeId: (data.youtubeId as string) || "",
-    thumbnail: data.thumbnail as string | undefined,
-  })).filter((item) => item.youtubeId);
-}
-
-export function getTutorialBySlug(slug: string) {
-  return getAllTutorials().find((item) => item.slug === slug) || null;
-}
-
-export function getAllStreams() {
-  return readTypedMarkdownFiles<StreamItem>("streams", (data, base) => ({
-    ...base,
-    platform: (data.platform as string) || "kick",
-    streamUrl: (data.streamUrl as string) || "",
-    embedUrl: data.embedUrl as string | undefined,
-    thumbnail: data.thumbnail as string | undefined,
-  })).filter((item) => item.streamUrl);
-}
-
-export function getStreamBySlug(slug: string) {
-  return getAllStreams().find((item) => item.slug === slug) || null;
-}
-
-export function getAllRepos() {
-  return readTypedMarkdownFiles<RepoItem>("repos", (data, base) => ({
-    ...base,
-    repoUrl: (data.repoUrl as string) || "",
-    language: data.language as string | undefined,
-    topics: data.topics as string[] | undefined,
-  })).filter((item) => item.repoUrl);
-}
-
-export function getRepoBySlug(slug: string) {
-  return getAllRepos().find((item) => item.slug === slug) || null;
-}
-
-export function getTipsPosts() {
-  return getAllPosts().filter(
-    (post) =>
-      post.category === "Tips & Thoughts" ||
-      post.tags?.includes("tips") ||
-      post.tags?.includes("learn")
-  );
 }

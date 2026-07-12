@@ -1,17 +1,18 @@
-import WebflowContent from "@/components/WebflowContent";
-import { getWebflowPage } from "@/lib/get-webflow-page";
-import type { Metadata } from "next";
+import ServiceStylePage from "@/components/ServiceStylePage";
+import { getWebflowPageSeo } from "@/lib/webflow-page-seo";
 
-const page = getWebflowPage("nfts.html");
+const { page, metadata, jsonLd } = getWebflowPageSeo("nfts.html", "/nfts", {
+  serviceType: "NFT & Web3 Development",
+});
 
-export const metadata: Metadata = {
-  title: page.metadata.title.replace(" | BLURRD Studio", "").replace(" — BLURRD Studio", ""),
-  description: page.metadata.description,
-  openGraph: page.metadata.ogImage
-    ? { images: [page.metadata.ogImage] }
-    : undefined,
-};
+export { metadata };
 
 export default function Page() {
-  return <WebflowContent html={page.content} depth={0} />;
+  return (
+    <ServiceStylePage
+      html={page.content}
+      ctaHeadline="Let's Build Your Next Web3 Experience."
+      jsonLd={jsonLd}
+    />
+  );
 }

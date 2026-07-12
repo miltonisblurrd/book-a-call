@@ -926,3 +926,106 @@ body.work-overlay-open {
     height: 200px;
   }
 }
+
+/* Blog index — search, filters, resource cards */
+.blog-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(180px, 0.75fr) minmax(180px, 0.75fr);
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.blog-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.blog-field-label {
+  font-family: JetBrains Mono, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.blog-search-input,
+.blog-select {
+  margin-bottom: 0;
+  min-height: 44px;
+  border-color: rgba(0, 51, 153, 0.18);
+  background: #fff;
+}
+
+.blog-results-meta {
+  margin: 0 0 20px;
+}
+
+.blog-resource-type {
+  margin-bottom: 8px;
+  font-family: JetBrains Mono, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #f26419;
+}
+
+.blog-resource-meta {
+  margin: -4px 0 12px;
+  font-size: 14px;
+}
+
+.blog-tutorial-thumbnail {
+  width: 100%;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+}
+
+.blog-empty-state {
+  height: auto;
+  overflow: visible;
+  cursor: default;
+}
+
+.blog-resource-card h3 {
+  margin: 0 0 8px;
+}
+
+/* Legal pages — privacy policy typography */
+.legal-content p,
+.legal-content li {
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #333;
+}
+
+.legal-content p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.legal-content ul {
+  margin: 0 0 1rem;
+  padding-left: 1.5rem;
+}
+
+.legal-content li {
+  margin-bottom: 0.5rem;
+}
+
+.legal-content a {
+  color: var(--networkblue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media screen and (max-width: 767px) {
+  .blog-toolbar {
+    grid-template-columns: 1fr;
+  }
+}

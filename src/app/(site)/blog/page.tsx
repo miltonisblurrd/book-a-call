@@ -1,51 +1,47 @@
-import { MDXRemote } from "next-mdx-remote/rsc";
-import Link from "next/link";
+import BlogArticleExplorer from "@/components/BlogArticleExplorer";
+import JsonLd from "@/components/JsonLd";
 import { getAllPosts } from "@/lib/content";
+import { breadcrumbSchema, buildPageMetadata, collectionPageSchema } from "@/lib/seo";
+import Link from "next/link";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Words & Stuff | Blurrd Studio Blog",
   description:
     "Explore articles, insights, and creative perspectives from Blurrd Studio on branding, design, development, and digital strategy.",
-};
+  path: "/blog",
+});
 
 export default function BlogPage() {
   const posts = getAllPosts();
+  const articles = posts.map((post) => ({
+    slug: post.slug,
+    title: post.title,
+    description: post.description,
+    date: post.date,
+    category: post.category,
+    tags: post.tags,
+  }));
+
+  const jsonLd = [
+    collectionPageSchema({
+      name: "BLURRD Studio Blog",
+      description:
+        "Articles and insights on branding, design, development, and digital strategy.",
+      path: "/blog",
+      items: posts.map((post) => ({
+        name: post.title,
+        path: `/blog/${post.slug}`,
+      })),
+    }),
+    breadcrumbSchema([{ name: "Blog", path: "/blog" }]),
+  ];
 
   return (
     <>
-      <section className="section u-p-40-hero">
-        <div className="container">
-          <div className="wrapper-orange">
-            <h2 className="h2">Articles</h2>
-          </div>
-          <div className="grid-3 u-p-0">
-            {posts.map((post) => (
-              <article key={post.slug} className="wrapper-article">
-                {post.category && (
-                  <div className="text-paragraph-article-header">{post.category}</div>
-                )}
-                <h1 className="text-paragraph-article-header">{post.title}</h1>
-                <p className="text-paragraph-article-body">{post.description}</p>
-                <div className="wrapper-article-learn">
-                  <img
-                    src="/images/Group-47652.svg"
-                    loading="lazy"
-                    alt=""
-                    className="image-arrows"
-                  />
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="text-paragraph-article-header u-mb-0"
-                  >
-                    Learn More
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <JsonLd data={jsonLd} />
+      <BlogArticleExplorer articles={articles} />
+
       <section className="section u-p-40-hero">
         <div className="container">
           <img
@@ -54,9 +50,9 @@ export default function BlogPage() {
             alt=""
             className="iimage-reviews u-text-center"
           />
-          <h1 className="h1 u-text-center u-mt-2">
+          <h2 className="h1 u-text-center u-mt-2">
             <strong className="bold-text">Let&apos;s Build to Scale.</strong>
-          </h1>
+          </h2>
           <div className="wrapper-buttons u-mt-2 u-text-center">
             <Link href="/book-a-call" className="btn u-mr-2 w-button">
               Book a 15 Min. Call

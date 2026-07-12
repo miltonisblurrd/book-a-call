@@ -1,4 +1,4 @@
-import { TipCard } from "@/components/LearnItemCard";
+import { ArticleCard } from "@/components/ArticleCard";
 import type { ContentItem } from "@/lib/content";
 
 type BlogRecentArticlesProps = {
@@ -16,7 +16,7 @@ export default function BlogRecentArticles({ posts }: BlogRecentArticlesProps) {
         </div>
         <div className="grid-3 u-p-0">
           {posts.map((post) => (
-            <TipCard
+            <ArticleCard
               key={post.slug}
               href={`/blog/${post.slug}`}
               title={post.title}

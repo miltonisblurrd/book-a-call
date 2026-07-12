@@ -1,6 +1,11 @@
 import fs from "fs";
 import path from "path";
-import { extractMainContent, extractMetadata } from "./webflow-html";
+import {
+  extractJsonLd,
+  extractMainContent,
+  extractMetadata,
+} from "./webflow-html";
+import { normalizeJsonLd } from "./seo";
 
 export function getWebflowPage(relativePath: string) {
   const fullPath = path.join(process.cwd(), "blurrd-studi.webflow", relativePath);
@@ -9,6 +14,7 @@ export function getWebflowPage(relativePath: string) {
   return {
     metadata: extractMetadata(html),
     content: extractMainContent(html),
+    jsonLd: normalizeJsonLd(extractJsonLd(html)),
     depth,
   };
 }

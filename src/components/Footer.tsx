@@ -5,9 +5,9 @@ export default function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="wrapper-footer">
-          <a href="#" className="text-footer">
+          <Link href="/privacy" className="text-footer">
             Privacy
-          </a>
+          </Link>
           <div className="line-divider-vertical footer" />
           <Link href="/terms-of-service" className="text-footer">
             Terms & Conditions
