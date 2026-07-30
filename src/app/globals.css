@@ -6,6 +6,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Webflow utility classes used standalone in markdown / case study body content */
+.u-p-20-around {
+  padding: 20px;
+}
+
+.text-paragraph.u-mt-2 {
+  margin-top: 16px;
+}
+
 /* Hero headlines — consistent weight site-wide (after Tailwind base) */
 h1.h1,
 .h1,
@@ -341,6 +350,24 @@ h1.h1,
   scroll-margin-top: 24px;
 }
 
+.case-study-project-work .wrapper-blue > .u-p-20-around:not(.wrapper-blue-header),
+.case-study-project-work .wrapper-blue > .u-p-all-around {
+  background-color: #fff;
+}
+
+.case-study-project-work .wrapper-blue-header {
+  background-color: var(--networkblue);
+}
+
+.case-study-project-work .wrapper-blue-header .text-paragraph.u-extra-bold.u-text-white {
+  color: #fff;
+}
+
+.case-study-project-work .wrapper-blue .text-paragraph.u-text-gray {
+  color: #555;
+  line-height: 1.65;
+}
+
 .case-study-visual {
   margin: 0;
   background: #fff;
@@ -369,6 +396,21 @@ h1.h1,
 
 .case-study-visual figcaption strong {
   color: #111;
+}
+
+.case-study-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  padding: 32px 24px;
+  background: #f7f4ef;
+  border-bottom: 2px dashed rgba(0, 51, 153, 0.2);
+  color: #666;
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
 }
 
 .case-study-results {

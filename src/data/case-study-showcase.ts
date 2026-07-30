@@ -6,10 +6,20 @@ export type CaseStudyShowcase = {
   categories: string[];
 };
 
+/** Flagship work — brand, product, and app engagements we lead with. */
 const SHOWCASE_ORDER = [
   "symphny",
   "safefaces",
   "shipnetwork",
+  "prcl-world",
+  "how-much",
+  "stronghold-ac",
+  "elk",
+  "dubmans",
+] as const;
+
+/** Live case studies omitted from the bottom "Other Case Studies" grid. */
+const HIDDEN_FROM_SHOWCASE = new Set<string>([
   "rakuten",
   "firstmile",
   "freedom-tax-strategies",
@@ -19,27 +29,27 @@ const SHOWCASE_ORDER = [
   "stronghold-ac",
   "elk",
   "dubmans",
-] as const;
+]);
 
 export const CASE_STUDY_SHOWCASE: CaseStudyShowcase[] = [
   {
     slug: "symphny",
     name: "Symphny",
     thumbnail: "/images/20260411202416001.gif",
-    categories: ["Branding", "Website"],
+    categories: ["Branding", "Product", "Website"],
   },
   {
     slug: "safefaces",
-    name: "SafeFaces",
+    name: "Safe Faces",
     thumbnail: "/images/Group-47654-1.jpg",
-    categories: ["Branding", "Design", "Website", "iOS"],
+    categories: ["Branding", "Product", "iOS"],
   },
   {
     slug: "shipnetwork",
     name: "ShipNetwork",
     thumbnail: "/images/Group-47629_1.avif",
     thumbnailClass: "u-image-cover",
-    categories: ["Branding", "Website", "Product"],
+    categories: ["Branding", "Product", "Website"],
   },
   {
     slug: "rakuten",
@@ -107,7 +117,9 @@ export function getCaseStudyShowcase(slug: string) {
 }
 
 export function getOtherCaseStudyShowcases(excludeSlug: string, limit = 6) {
-  return CASE_STUDY_SHOWCASE.filter((item) => item.slug !== excludeSlug)
+  return CASE_STUDY_SHOWCASE.filter(
+    (item) => item.slug !== excludeSlug && !HIDDEN_FROM_SHOWCASE.has(item.slug),
+  )
     .sort((a, b) => showcaseSortIndex(a.slug) - showcaseSortIndex(b.slug))
     .slice(0, limit);
 }
