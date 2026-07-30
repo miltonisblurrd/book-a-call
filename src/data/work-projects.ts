@@ -35,7 +35,7 @@ export const WORK_PROJECTS: WorkProject[] = [
     id: "symphny",
     name: "Symphny",
     thumbnail: "/images/20260411202416001.gif",
-    categories: ["Branding", "Website"],
+    categories: ["Branding", "Product", "Website"],
     hoverProps: [
       {
         src: "/images/Asset-2-1.svg",
@@ -82,9 +82,9 @@ export const WORK_PROJECTS: WorkProject[] = [
   },
   {
     id: "safefaces",
-    name: "SafeFaces",
+    name: "Safe Faces",
     thumbnail: "/images/Group-47654-1.jpg",
-    categories: ["Branding", "Design", "Website", "iOS"],
+    categories: ["Branding", "Product", "iOS"],
     hoverProps: [
       {
         src: "/images/Group-436-1.svg",
@@ -137,10 +137,6 @@ export const WORK_PROJECTS: WorkProject[] = [
     ],
     overlayImages: [
       { src: "/images/Group-47654-1.jpg", className: "image-one-window" },
-      { src: "/images/Frame-47417_1.avif", className: "image-one-window" },
-      { src: "/images/Group-47633_1.avif", className: "image-one-window" },
-      { src: "/images/Frame-47348_1.avif", className: "image-two-window" },
-      { src: "/images/Frame-47418_1.avif", className: "image-two-window" },
     ],
   },
   {
@@ -148,7 +144,7 @@ export const WORK_PROJECTS: WorkProject[] = [
     name: "ShipNetwork",
     thumbnail: "/images/Group-47629_1.avif",
     thumbnailClass: "u-image-cover",
-    categories: ["Branding", "Website", "Product"],
+    categories: ["Branding", "Product", "Website"],
     hoverProps: [
       {
         src: "/images/shipNetworkLogo.svg",

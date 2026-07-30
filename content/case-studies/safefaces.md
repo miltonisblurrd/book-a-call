@@ -136,7 +136,7 @@ caseStudy:
               <figcaption><span>07</span><strong>In-app camera</strong> — Capture photos and videos directly in Safe Faces without leaving the privacy-first workflow.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <img src="../images/Group-47633_1.avif" loading="lazy" alt="Safe Faces interface and product design details" class="image-one-window">
+              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Interface system">Screenshot: Interface system — editor navigation, controls, settings, and privacy communication</div>
               <figcaption><span>08</span><strong>Interface system</strong> — Consistent patterns across editor navigation, controls, settings, and privacy communication.</figcaption>
             </figure>
           </div>
@@ -192,7 +192,7 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2">Safe Faces remains in beta, so the outcome is not presented through invented download or conversion metrics. The strongest proof is the shipped experience: a working privacy product available for real-device testing, supported by a complete brand and launch platform.</p>
             </div>
             <figure class="case-study-visual">
-              <img src="../images/Frame-47417_1.avif" loading="lazy" alt="Safe Faces responsive landing page design" class="image-one-window">
+              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Landing page">Screenshot: Landing page — conversion-focused UX that routes qualified users to TestFlight</div>
               <figcaption><span>12</span><strong>Landing page</strong> — Conversion-focused UX that explains the product and routes qualified users to TestFlight.</figcaption>
             </figure>
             <figure class="case-study-visual">
