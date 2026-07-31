@@ -1,6 +1,6 @@
 import BlogArticleExplorer from "@/components/BlogArticleExplorer";
 import JsonLd from "@/components/JsonLd";
-import { getAllPosts } from "@/lib/content";
+import { getPublishedPosts } from "@/lib/content";
 import { breadcrumbSchema, buildPageMetadata, collectionPageSchema } from "@/lib/seo";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -13,7 +13,7 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function BlogPage() {
-  const posts = getAllPosts();
+  const posts = getPublishedPosts();
   const articles = posts.map((post) => ({
     slug: post.slug,
     title: post.title,

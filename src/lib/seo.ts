@@ -112,6 +112,14 @@ export function localBusinessSchema() {
       addressRegion: "NV",
       addressCountry: "US",
     },
+    areaServed: {
+      "@type": "City",
+      name: "Las Vegas",
+      containedInPlace: {
+        "@type": "State",
+        name: "Nevada",
+      },
+    },
     sameAs: [
       "https://x.com/BlurrdStudio",
       "https://www.instagram.com/blurrdstudio/",
@@ -130,6 +138,17 @@ export function breadcrumbSchema(items: Array<{ name: string; path: string }>) {
       item: absoluteUrl(item.path),
     })),
   };
+}
+
+export function faqAnswerPlainText(markdown: string) {
+  return markdown
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/\*(.*?)\*/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/^-\s+/gm, "• ")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 export function faqPageSchema(

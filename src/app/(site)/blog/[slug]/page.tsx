@@ -1,6 +1,10 @@
 import BlogRecentArticles from "@/components/BlogRecentArticles";
 import JsonLd from "@/components/JsonLd";
-import { getAllPosts, getPostBySlug, getRecentPosts } from "@/lib/content";
+import {
+  getPublishedPostBySlug,
+  getPublishedPosts,
+  getRecentPosts,
+} from "@/lib/content";
 import {
   articleSchema,
   breadcrumbSchema,
@@ -25,12 +29,12 @@ function formatPublishedDate(date: string) {
 }
 
 export async function generateStaticParams() {
-  return getAllPosts().map((post) => ({ slug: post.slug }));
+  return getPublishedPosts().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = getPublishedPostBySlug(slug);
   if (!post) return {};
 
   return buildPageMetadata({
@@ -44,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = getPublishedPostBySlug(slug);
   if (!post) notFound();
 
   const recentPosts = getRecentPosts(slug, 3);

@@ -1,13 +1,13 @@
 import JsonLd from "@/components/JsonLd";
 import Link from "next/link";
 import { getAllFaqs } from "@/lib/content";
-import { breadcrumbSchema, buildPageMetadata, faqPageSchema } from "@/lib/seo";
+import { breadcrumbSchema, buildPageMetadata, faqAnswerPlainText, faqPageSchema } from "@/lib/seo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "FAQs at BLURRD Studio",
   description:
-    "Have questions about BLURRD Studio services, process, or pricing? Browse frequently asked questions or reach out directly.",
+    "Answers about BLURRD Studio branding, product design, web development, pricing, process, and timelines. Browse 90+ in-depth FAQs or book a call.",
   path: "/faqs",
 });
 
@@ -17,7 +17,10 @@ export default function FaqsPage() {
     faqPageSchema(
       faqs.map((faq) => ({
         question: faq.title,
-        answer: faq.content.replace(/\n+/g, " ").trim() || faq.description,
+        answer:
+          faqAnswerPlainText(faq.content) ||
+          faq.metaDescription ||
+          faq.description,
       }))
     ),
     breadcrumbSchema([{ name: "FAQs", path: "/faqs" }]),

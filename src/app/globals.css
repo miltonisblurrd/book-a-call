@@ -776,6 +776,105 @@ body.work-project-focus .wrapper-work.is-focused {
   z-index: 1;
 }
 
+.work-project-thumbnail {
+  position: relative;
+  height: 350px;
+  overflow: hidden;
+}
+
+.work-project-thumbnail .image-work-thumbnail {
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.15s ease;
+}
+
+.work-project-thumbnail .image-work-thumbnail.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.work-project-thumbnail-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.work-project-thumbnail-video.is-visible {
+  opacity: 1;
+  visibility: visible;
+  z-index: 3;
+}
+
+.work-thumbnail-cover-top.image-work-thumbnail,
+.work-project-thumbnail .work-thumbnail-cover-top {
+  object-fit: cover;
+  object-position: top center;
+}
+
+.work-section-pane .work-project-thumbnail.work-thumbnail-cover-top .image-work-thumbnail {
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* ShipNetwork hero — crop nav, keep title + CTA in frame */
+.work-thumbnail-shipnetwork-hero.image-work-thumbnail,
+.work-project-thumbnail.work-thumbnail-shipnetwork-hero .work-project-thumbnail-video {
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+.work-section-pane .work-project-thumbnail.work-thumbnail-shipnetwork-hero .image-work-thumbnail {
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+/* Symphny hero — full width, crop nav, keep headline + chat in frame */
+.work-thumbnail-symphny-hero.image-work-thumbnail,
+.work-project-thumbnail.work-thumbnail-symphny-hero .work-project-thumbnail-video {
+  object-fit: cover;
+  object-position: 50% 54%;
+}
+
+.work-section-pane .work-project-thumbnail.work-thumbnail-symphny-hero .image-work-thumbnail {
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 54%;
+}
+
+/* Safe Faces hero — full width cover, crop nav */
+.work-project-thumbnail.work-thumbnail-safefaces-hero {
+  overflow: hidden;
+  background-color: #fef5e3;
+}
+
+.work-thumbnail-safefaces-hero.image-work-thumbnail,
+.work-project-thumbnail.work-thumbnail-safefaces-hero .work-project-thumbnail-video,
+.work-section-pane .work-project-thumbnail.work-thumbnail-safefaces-hero .image-work-thumbnail {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 58%;
+  transform: translateX(3%);
+}
+
+.work-project-thumbnail.work-thumbnail-safefaces-hero .work-project-thumbnail-video {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(3%);
+}
+
 .work-section-pane .link-categories {
   margin-top: 20px;
   margin-right: 20px;
@@ -802,7 +901,8 @@ body.work-project-focus .wrapper-work.is-focused {
   width: 100%;
 }
 
-.work-section-pane.work-section--grid .image-work-thumbnail {
+.work-section-pane.work-section--grid .image-work-thumbnail,
+.work-section-pane.work-section--grid .work-project-thumbnail {
   height: 300px;
 }
 

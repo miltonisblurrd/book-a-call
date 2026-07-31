@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import {
   getAllCaseStudies,
   getAllFaqs,
-  getAllPosts,
+  getPublishedPosts,
 } from "@/lib/content";
 
 const staticRoutes = [
@@ -13,6 +13,9 @@ const staticRoutes = [
   "/services/design",
   "/services/development",
   "/services/ongoing-support",
+  "/las-vegas/branding",
+  "/las-vegas/design",
+  "/las-vegas/development",
   "/blog",
   "/faqs",
   "/book-a-call",
@@ -38,7 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "" ? 1 : 0.8,
   }));
 
-  for (const post of getAllPosts()) {
+  for (const post of getPublishedPosts()) {
     routes.push({
       url: `${base}/blog/${post.slug}`,
       lastModified: post.date ? new Date(post.date) : new Date(),

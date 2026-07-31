@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="96" fill="#FEF5E3"/>
+  <defs>
+    <filter id="faceblur" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+  </defs>
+  <circle cx="400" cy="96" r="40" fill="#FCD679"/>
+  <ellipse cx="120" cy="110" rx="56" ry="24" fill="#C7DDF1"/>
+  <path d="M0 360 Q256 300 512 360 L512 512 L0 512 Z" fill="#A9CE9B"/>
+  <path d="M160 512 L160 340 C160 300 200 280 256 280 C312 280 352 300 352 340 L352 512 Z" fill="#4297E4"/>
+  <g filter="url(#faceblur)">
+    <circle cx="256" cy="210" r="72" fill="#5B3A2A"/>
+    <circle cx="256" cy="228" r="64" fill="#EFD0AE"/>
+    <circle cx="232" cy="222" r="7" fill="#3A2A20"/>
+    <circle cx="280" cy="222" r="7" fill="#3A2A20"/>
+    <path d="M232 250 Q256 270 280 250" stroke="#3A2A20" stroke-width="6" stroke-linecap="round" fill="none"/>
+  </g>
+  <rect x="150" y="120" width="212" height="230" rx="20" stroke="#4297E4" stroke-width="14" fill="none"/>
+</svg>

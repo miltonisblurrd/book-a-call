@@ -1,0 +1,28 @@
+name: Publish scheduled blogs
+
+# Rebuilds the Vercel production site every Monday so future-dated posts
+# unlock via getPublishedPosts() (America/Los_Angeles date filter).
+#
+# One-time setup:
+# 1. Vercel → Project → Settings → Git → Deploy Hooks → Create Hook (Production)
+# 2. GitHub repo → Settings → Secrets → Actions → add VERCEL_DEPLOY_HOOK_URL
+
+on:
+  schedule:
+    - cron: "0 15 * * 1" # Monday 8:00 AM America/Los_Angeles (PST) / 15:00 UTC
+  workflow_dispatch:
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel production deploy
+        env:
+          VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$VERCEL_DEPLOY_HOOK_URL" ]; then
+            echo "Missing secret VERCEL_DEPLOY_HOOK_URL"
+            exit 1
+          fi
+          curl -fsS -X POST "$VERCEL_DEPLOY_HOOK_URL"
+          echo "Deploy hook triggered."

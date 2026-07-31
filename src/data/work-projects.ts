@@ -25,6 +25,8 @@ export type WorkProject = {
   name: string;
   thumbnail: string;
   thumbnailClass?: string;
+  /** Plays on card hover; pauses and resets when hover ends */
+  hoverVideo?: string;
   categories: string[];
   hoverProps: HoverProp[];
   overlayImages: Array<{ src: string; className?: string }>;
@@ -34,12 +36,14 @@ export const WORK_PROJECTS: WorkProject[] = [
   {
     id: "symphny",
     name: "Symphny",
-    thumbnail: "/images/20260411202416001.gif",
+    thumbnail: "/images/symphnyHomeShot.png",
+    hoverVideo: "/images/symrecord.mp4",
+    thumbnailClass: "work-thumbnail-symphny-hero",
     categories: ["Branding", "Product", "Website"],
     hoverProps: [
       {
-        src: "/images/Asset-2-1.svg",
-        size: 88,
+        src: "/images/symphny-sticker-gear.png",
+        size: 96,
         anchor: "top-left",
         rotate: -14,
         delayIn: 0,
@@ -47,8 +51,8 @@ export const WORK_PROJECTS: WorkProject[] = [
         yOffset: "12px",
       },
       {
-        src: "/images/Frame-110.svg",
-        size: 76,
+        src: "/images/symphny-sticker-chat.png",
+        size: 88,
         anchor: "top-right",
         rotate: 12,
         delayIn: 55,
@@ -56,8 +60,8 @@ export const WORK_PROJECTS: WorkProject[] = [
         yOffset: "20px",
       },
       {
-        src: "/images/Clip-path-group.svg",
-        size: 92,
+        src: "/images/symphny-sticker-network.png",
+        size: 100,
         anchor: "bottom-left",
         rotate: -10,
         delayIn: 110,
@@ -65,8 +69,8 @@ export const WORK_PROJECTS: WorkProject[] = [
         yOffset: "-10px",
       },
       {
-        src: "/images/Frame-47296.svg",
-        size: 72,
+        src: "/images/symphny-sticker-conductor.png",
+        size: 96,
         anchor: "bottom-right",
         rotate: 18,
         delayIn: 165,
@@ -83,11 +87,13 @@ export const WORK_PROJECTS: WorkProject[] = [
   {
     id: "safefaces",
     name: "Safe Faces",
-    thumbnail: "/images/Group-47654-1.jpg",
+    thumbnail: "/images/safeFacesImage.png",
+    hoverVideo: "/images/safeFaces.mp4",
+    thumbnailClass: "work-thumbnail-safefaces-hero",
     categories: ["Branding", "Product", "iOS"],
     hoverProps: [
       {
-        src: "/images/Group-436-1.svg",
+        src: "/images/01-app-mark.svg",
         size: 84,
         anchor: "top-left",
         rotate: -12,
@@ -97,7 +103,7 @@ export const WORK_PROJECTS: WorkProject[] = [
         yOffset: "24px",
       },
       {
-        src: "/images/Vector-97.svg",
+        src: "/images/05-post-safe.svg",
         size: 78,
         anchor: "top-right",
         rotate: 16,
@@ -107,7 +113,7 @@ export const WORK_PROJECTS: WorkProject[] = [
         yOffset: "16px",
       },
       {
-        src: "/images/Frame-47386.svg",
+        src: "/images/04-on-device.svg",
         size: 96,
         anchor: "left",
         rotate: 8,
@@ -116,7 +122,7 @@ export const WORK_PROJECTS: WorkProject[] = [
         yOffset: "30px",
       },
       {
-        src: "/images/Group-47669-1.svg",
+        src: "/images/03-face-exposed.svg",
         size: 74,
         anchor: "right",
         rotate: -18,
@@ -125,7 +131,7 @@ export const WORK_PROJECTS: WorkProject[] = [
         yOffset: "-20px",
       },
       {
-        src: "/images/Frame-47267-1.svg",
+        src: "/images/02-face-covered.svg",
         size: 68,
         anchor: "bottom-left",
         rotate: 6,
@@ -142,13 +148,14 @@ export const WORK_PROJECTS: WorkProject[] = [
   {
     id: "shipnetwork",
     name: "ShipNetwork",
-    thumbnail: "/images/Group-47629_1.avif",
-    thumbnailClass: "u-image-cover",
+    thumbnail: "/images/snhero.png",
+    hoverVideo: "/images/snVideo.mp4",
+    thumbnailClass: "work-thumbnail-shipnetwork-hero",
     categories: ["Branding", "Product", "Website"],
     hoverProps: [
       {
-        src: "/images/shipNetworkLogo.svg",
-        size: 86,
+        src: "/images/sn1.svg",
+        size: 104,
         anchor: "top-left",
         rotate: -10,
         delayIn: 0,
@@ -156,8 +163,8 @@ export const WORK_PROJECTS: WorkProject[] = [
         yOffset: "18px",
       },
       {
-        src: "/images/Group-6.svg",
-        size: 80,
+        src: "/images/sn2.svg",
+        size: 96,
         anchor: "top-right",
         rotate: 14,
         delayIn: 60,
@@ -165,8 +172,8 @@ export const WORK_PROJECTS: WorkProject[] = [
         yOffset: "22px",
       },
       {
-        src: "/images/Frame-47263.svg",
-        size: 94,
+        src: "/images/sn3.svg",
+        size: 112,
         anchor: "bottom-right",
         rotate: -8,
         delayIn: 120,
@@ -174,8 +181,8 @@ export const WORK_PROJECTS: WorkProject[] = [
         xOffset: "-6px",
       },
       {
-        src: "/images/Group-2011.svg",
-        size: 70,
+        src: "/images/sn4.svg",
+        size: 86,
         anchor: "bottom-left",
         rotate: 22,
         delayIn: 170,

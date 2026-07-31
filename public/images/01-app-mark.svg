@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="140" fill="#4297E4"/>
+  <defs>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="28"/>
+    </filter>
+  </defs>
+  <g filter="url(#blur)">
+    <circle cx="256" cy="224" r="96" fill="#FEF5E3"/>
+    <path d="M90 512c0-92 74-166 166-166s166 74 166 166z" fill="#FEF5E3"/>
+  </g>
+</svg>

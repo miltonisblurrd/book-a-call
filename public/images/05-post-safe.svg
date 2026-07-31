@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="96" fill="#FEF5E3"/>
+  <rect x="72" y="88" width="280" height="336" rx="28" fill="#FFFFFF"/>
+  <rect x="96" y="112" width="232" height="200" rx="16" fill="#C7DDF1"/>
+  <defs>
+    <filter id="b" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+  <g filter="url(#b)">
+    <circle cx="212" cy="190" r="42" fill="#EFD0AE"/>
+    <path d="M160 300 c20-40 84-40 104 0" fill="#4297E4"/>
+  </g>
+  <rect x="158" y="140" width="108" height="120" rx="10" stroke="#4297E4" stroke-width="8" fill="none"/>
+  <circle cx="380" cy="340" r="88" fill="#4297E4"/>
+  <path d="M350 340 h40 M372 318 l28 22 -28 22" stroke="#FEF5E3" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="430" cy="280" r="36" fill="#104A90"/>
+  <path d="M416 280 l10 10 18-20" stroke="#FEF5E3" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

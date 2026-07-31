@@ -92,12 +92,42 @@ export function getAllPosts() {
   return readMarkdownFiles("blog");
 }
 
+/** Today's date in America/Los_Angeles as YYYY-MM-DD (for scheduled blog publish). */
+export function getTodayInLosAngeles(): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Los_Angeles",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+}
+
+export function isPostPublished(
+  post: Pick<ContentItem, "date">,
+  today = getTodayInLosAngeles()
+) {
+  if (!post.date) return true;
+  return post.date <= today;
+}
+
+/** Posts whose `date` is today or earlier in America/Los_Angeles. */
+export function getPublishedPosts() {
+  const today = getTodayInLosAngeles();
+  return getAllPosts().filter((post) => isPostPublished(post, today));
+}
+
 export function getPostBySlug(slug: string) {
   return getAllPosts().find((post) => post.slug === slug) || null;
 }
 
+export function getPublishedPostBySlug(slug: string) {
+  const post = getPostBySlug(slug);
+  if (!post || !isPostPublished(post)) return null;
+  return post;
+}
+
 export function getRecentPosts(excludeSlug: string, limit = 3) {
-  return getAllPosts()
+  return getPublishedPosts()
     .filter((post) => post.slug !== excludeSlug)
     .slice(0, limit);
 }

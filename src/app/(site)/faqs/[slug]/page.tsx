@@ -5,6 +5,7 @@ import { getAllFaqs, getFaqBySlug } from "@/lib/content";
 import {
   breadcrumbSchema,
   buildPageMetadata,
+  faqAnswerPlainText,
   faqPageSchema,
 } from "@/lib/seo";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -36,7 +37,8 @@ export default async function FaqDetailPage({ params }: Props) {
   if (!faq) notFound();
 
   const path = `/faqs/${slug}`;
-  const answerText = faq.content.replace(/\n+/g, " ").trim() || faq.description;
+  const answerText =
+    faqAnswerPlainText(faq.content) || faq.metaDescription || faq.description;
   const jsonLd = [
     faqPageSchema([{ question: faq.title, answer: answerText }]),
     breadcrumbSchema([

@@ -100,6 +100,11 @@ Run on live domain after DNS propagates:
 - [ ] **Redirects** — add any old Webflow `.html` URL redirects if analytics/logs show 404s
 - [ ] **Search Console** — submit sitemap `https://www.blurrdstudio.com/sitemap.xml`
 - [ ] Monitor Vercel logs for booking API errors
+- [ ] **Scheduled blogs deploy hook** (one-time):
+  1. Vercel → Project → Settings → Git → Deploy Hooks → Create Hook named `monday-blogs` (Production)
+  2. GitHub repo → Settings → Secrets and variables → Actions → New repository secret
+  3. Name: `VERCEL_DEPLOY_HOOK_URL` · Value: the hook URL from step 1
+  4. Confirm workflow `.github/workflows/publish-scheduled-blogs.yml` runs Mondays 8am PT (or trigger manually once)
 
 ---
 

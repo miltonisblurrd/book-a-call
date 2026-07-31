@@ -2,7 +2,7 @@
 
 import { WORK_PROJECTS, type HoverProp, type WorkProject } from "@/data/work-projects";
 import Link from "next/link";
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
 
 const PANEL_TRANSITION_MS = 450;
@@ -32,6 +32,74 @@ function WorkHoverProps({ props, active }: { props: HoverProp[]; active: boolean
           style={hoverPropStyle(prop)}
         />
       ))}
+    </div>
+  );
+}
+
+function WorkProjectThumbnail({
+  project,
+  active,
+}: {
+  project: WorkProject;
+  active: boolean;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [showVideo, setShowVideo] = useState(false);
+  const className = `image-work-thumbnail${project.thumbnailClass ? ` ${project.thumbnailClass}` : ""}`;
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !project.hoverVideo) return;
+
+    if (!active) {
+      video.pause();
+      video.currentTime = 0;
+      setShowVideo(false);
+      return;
+    }
+
+    let cancelled = false;
+
+    const startPlayback = async () => {
+      try {
+        video.currentTime = 0;
+        await video.play();
+        if (!cancelled) setShowVideo(true);
+      } catch {
+        if (!cancelled) setShowVideo(false);
+      }
+    };
+
+    void startPlayback();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [active, project.hoverVideo]);
+
+  if (!project.hoverVideo) {
+    return <img src={project.thumbnail} loading="lazy" alt="" className={className} />;
+  }
+
+  return (
+    <div className={`work-project-thumbnail${project.thumbnailClass ? ` ${project.thumbnailClass}` : ""}`}>
+      <img
+        src={project.thumbnail}
+        loading="lazy"
+        alt=""
+        className={`${className}${showVideo ? " is-hidden" : ""}`}
+      />
+      <video
+        ref={videoRef}
+        src={project.hoverVideo}
+        poster={project.thumbnail}
+        className={`work-project-thumbnail-video${showVideo ? " is-visible" : ""}`}
+        muted
+        playsInline
+        loop
+        preload="auto"
+        aria-hidden="true"
+      />
     </div>
   );
 }
@@ -87,12 +155,7 @@ function WorkProjectCard({
               {project.name}
             </p>
           </div>
-          <img
-            src={project.thumbnail}
-            loading="lazy"
-            alt=""
-            className={`image-work-thumbnail${project.thumbnailClass ? ` ${project.thumbnailClass}` : ""}`}
-          />
+          <WorkProjectThumbnail project={project} active={hovered || isFocused} />
         </div>
       </div>
       {project.categories.map((category) => (
