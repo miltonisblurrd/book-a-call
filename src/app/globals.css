@@ -641,6 +641,8 @@ body.work-project-focus .nav {
 
 body.work-project-focus .body-wrapper > :not([data-work-section]) {
   filter: blur(12px) saturate(165%) contrast(92%) brightness(102%);
+  position: relative;
+  z-index: 1;
 }
 
 body.work-project-focus .work-section-chrome {
@@ -814,6 +816,11 @@ body.work-overlay-open {
   overflow: hidden;
 }
 
+body.work-overlay-open .body-wrapper > :not([data-work-section]) {
+  z-index: 0;
+  position: relative;
+}
+
 .work-section-pane .wrapper-blue.u-scroll-none {
   cursor: pointer;
 }
@@ -825,7 +832,7 @@ body.work-overlay-open {
 }
 
 .work-project-overlay.contact-modal3_component {
-  z-index: 1000;
+  z-index: 1100;
 }
 
 .work-project-overlay .contact-modal3_background-overlay {

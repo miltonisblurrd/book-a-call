@@ -3,6 +3,7 @@
 import { WORK_PROJECTS, type HoverProp, type WorkProject } from "@/data/work-projects";
 import Link from "next/link";
 import { useEffect, useState, type CSSProperties } from "react";
+import { createPortal } from "react-dom";
 
 const PANEL_TRANSITION_MS = 450;
 
@@ -192,6 +193,11 @@ export default function WorkSection() {
   const [openProjectId, setOpenProjectId] = useState<string | null>(null);
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [focusedProjectId, setFocusedProjectId] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const openProject = WORK_PROJECTS.find((p) => p.id === openProjectId) ?? null;
   const isAnyFocused = focusedProjectId !== null;
@@ -202,6 +208,7 @@ export default function WorkSection() {
   }, [isAnyFocused]);
 
   const handleOpen = (projectId: string) => {
+    setFocusedProjectId(null);
     setOpenProjectId(projectId);
     setOverlayOpen(false);
     requestAnimationFrame(() => {
@@ -269,13 +276,16 @@ export default function WorkSection() {
         </div>
       </div>
 
-      {openProject && (
-        <ProjectDetailOverlay
-          project={openProject}
-          isOpen={overlayOpen}
-          onClose={handleClose}
-        />
-      )}
+      {mounted && openProject
+        ? createPortal(
+            <ProjectDetailOverlay
+              project={openProject}
+              isOpen={overlayOpen}
+              onClose={handleClose}
+            />,
+            document.body
+          )
+        : null}
     </section>
   );
 }

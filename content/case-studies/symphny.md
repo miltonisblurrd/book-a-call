@@ -65,11 +65,11 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2">Core promise: calmer, more coordinated operations. Fewer broken handoffs, clearer visibility, governed intelligence, and ongoing ownership. The canonical line—<em>Symphny orchestrates the systems, workflows, and intelligence behind modern operations—so talented teams and capable tools perform as one</em>—anchors every page, proposal, and product surface.</p>
             </div>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Brand foundation one-pager">Screenshot: Brand foundation one-pager — clarity, coordination, and performance pillars</div>
+              <img src="../images/symphny-brand-foundation.png" loading="lazy" alt="Symphny brand foundation one-pager — clarity, coordination, and performance pillars" class="image-one-window">
               <figcaption><span>01</span><strong>Brand in one page</strong> — The foundation document distills category, promise, and the three pillars buyers need before any technical detail.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Positioning framework">Screenshot: Positioning framework — who Symphny is for, what it delivers, and how it differs from vendors and automation shops</div>
+              <img src="../images/symphny-positioning.png" loading="lazy" alt="Symphny positioning framework — who Symphny is for, what it delivers, and how it differs from vendors and automation shops" class="image-one-window">
               <figcaption><span>02</span><strong>Positioning architecture</strong> — A structured for/who face/is/that delivers/unlike/because model keeps sales and product language aligned.</figcaption>
             </figure>
           </div>
@@ -93,11 +93,11 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2">The message hierarchy always leads with the business problem: disconnected systems and broken handoffs create operational noise. From there, buyers move through the model, the orchestration layer, the outcome (calmer operations and clearer leadership visibility), and the next step—identify one critical journey and map where coordination breaks.</p>
             </div>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Five-layer orchestra model diagram">Screenshot: Five-layer orchestra model — musicians, sheet music, performers, orchestra pit, conductor</div>
+              <img src="../images/symphny-model.png" loading="lazy" alt="Symphny five-layer orchestra model — musicians, sheet music, performers, orchestra pit, conductor" class="image-one-window">
               <figcaption><span>03</span><strong>Orchestra model</strong> — Five labeled layers translate technical architecture into a metaphor operators and executives can both use.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Message hierarchy page">Screenshot: Message hierarchy — problem, difference, proof logic, outcome, and call to action in order</div>
+              <img src="../images/symphny-message-hierarchy.png" loading="lazy" alt="Symphny message hierarchy — problem, difference, proof logic, outcome, and call to action in order" class="image-one-window">
               <figcaption><span>04</span><strong>Message hierarchy</strong> — Coordination first, outcomes second, approach third, technology last. AI creates interest but does not become the category.</figcaption>
             </figure>
           </div>
@@ -122,11 +122,11 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2"><strong>Imagery &amp; motion:</strong> Orchestras, conductors, sheet music, architectural scale, halftone engraving, glass, and liquid metal—never robots, neon AI chips, or purple gradients. Motion favors slow drift, controlled reveals, and subtle shimmer rather than noisy effects. Interfaces feel observable and controlled: explicit status, ownership, next action, and error recovery.</p>
             </div>
             <figure class="case-study-visual">
-              <img src="../images/Group-47633_1.avif" loading="lazy" alt="Symphny brand and interface design details" class="image-one-window">
+              <img src="../images/symphny-colors.png" loading="lazy" alt="Symphny color palette — Orchestra Ink, Studio Paper, Conductor Gold, and brand accents" class="image-one-window">
               <figcaption><span>05</span><strong>Scalable visual language</strong> — Reusable patterns give the team room to add capabilities without fragmenting the brand.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Color and typography system">Screenshot: Color palette and typography scale — Orchestra Ink, Studio Paper, Conductor Gold, Inter + IBM Plex Mono pairings</div>
+              <img src="../images/symphny-color-type.png" loading="lazy" alt="Symphny color palette and typography scale — Orchestra Ink, Studio Paper, Conductor Gold, Inter and IBM Plex Mono pairings" class="image-one-window">
               <figcaption><span>06</span><strong>Color &amp; type system</strong> — A documented palette and type scale keep marketing and product surfaces visually aligned.</figcaption>
             </figure>
             <figure class="case-study-visual">
@@ -222,11 +222,11 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2">Public messaging distinguishes principle, design intent, implemented capability, verified control, and certified claim. The strongest credible language: Symphny is <em>designed around governance, human control, observability, and permissioned access</em>—not unsupported certifications or guaranteed ROI.</p>
             </div>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Voice and tone guidelines">Screenshot: Voice &amp; tone page — cold vs. warm, traits to use, and language to avoid</div>
+              <img src="../images/symphny-voice-tone.png" loading="lazy" alt="Symphny voice and tone guidelines — cold vs. warm, traits to use, and language to avoid" class="image-one-window">
               <figcaption><span>15</span><strong>Voice &amp; tone</strong> — Guidelines keep copy calm, composed, and outcome-led across marketing, product, and sales.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Trust and claims ladder">Screenshot: Trust &amp; claims section — responsible language vs. claims requiring evidence</div>
+              <img src="../images/symphny-trust-claims.png" loading="lazy" alt="Symphny trust and claims section — responsible language vs. claims requiring evidence" class="image-one-window">
               <figcaption><span>16</span><strong>Trust &amp; claims</strong> — An evidence ladder ensures public language matches what the system can actually prove.</figcaption>
             </figure>
           </div>
