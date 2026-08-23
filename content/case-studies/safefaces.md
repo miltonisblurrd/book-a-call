@@ -92,15 +92,15 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2">A complete brand framework established logo usage and lockups, color and accessibility standards, typography, voice and tone, messaging principles, privacy claim guidelines, interface language, and illustration and photography direction.</p>
             </div>
             <figure class="case-study-visual">
-              <img src="../images/Group-47654-1.jpg" loading="lazy" alt="Safe Faces brand identity overview" class="image-one-window">
+              <img src="../images/case-studies/safefaces/02-brand-system.jpg" loading="lazy" alt="Safe Faces brand system — logo, color, and typography" class="image-one-window">
               <figcaption><span>02</span><strong>Brand system</strong> — Logo, color, and typography built to feel warm and approachable—not technical or alarming.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Brand guidelines">Screenshot: Brand guidelines — logo lockups, color standards, voice and tone, and privacy claim guidelines</div>
+              <img src="../images/case-studies/safefaces/03-app-icon-mark.jpg" loading="lazy" alt="Safe Faces brand guidelines — logo lockups, color, voice, and privacy claims" class="image-one-window">
               <figcaption><span>03</span><strong>Brand guidelines</strong> — A complete framework covering messaging, accessibility, interface language, and approved privacy claims.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: App icon and logo mark">Screenshot: App icon and logo mark — rounded face mark representing presence without identifiability</div>
+              <img src="../images/case-studies/safefaces/04-logo-app-icon.jpg" loading="lazy" alt="Safe Faces logo and app icon — rounded face mark" class="image-one-window">
               <figcaption><span>04</span><strong>Logo &amp; app icon</strong> — The mark signals protection while keeping childhood warmth at the center of the identity.</figcaption>
             </figure>
           </div>
@@ -132,11 +132,11 @@ caseStudy:
               <figcaption><span>06</span><strong>Video workflow</strong> — Face selection, manual regions, and preview controls for the harder problem of moving video.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: In-app camera">Screenshot: In-app photo and video camera — capture and protect in one flow</div>
+              <img src="../images/case-studies/safefaces/07-in-app-camera.jpg" loading="lazy" alt="Safe Faces in-app camera for photo and video capture" class="image-one-window">
               <figcaption><span>07</span><strong>In-app camera</strong> — Capture photos and videos directly in Safe Faces without leaving the privacy-first workflow.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Interface system">Screenshot: Interface system — editor navigation, controls, settings, and privacy communication</div>
+              <img src="../images/case-studies/safefaces/08-interface-system.jpg" loading="lazy" alt="Safe Faces interface system across editor, controls, and settings" class="image-one-window">
               <figcaption><span>08</span><strong>Interface system</strong> — Consistent patterns across editor navigation, controls, settings, and privacy communication.</figcaption>
             </figure>
           </div>
@@ -160,7 +160,7 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2">Before video export, Safe Faces checks coverage across the timeline. If the result appears unsafe, the app blocks the export instead of silently producing a file with uncovered frames. Metadata is removed during export. Reliability tests cover face tracking and export behavior across six documented iterations from version 1.0 through 1.6.</p>
             </div>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Architecture diagram">Screenshot: Privacy-first architecture — on-device processing, no accounts, no cloud uploads</div>
+              <img src="../images/case-studies/safefaces/09-privacy-architecture.jpg" loading="lazy" alt="Safe Faces privacy architecture — on-device processing without cloud uploads" class="image-one-window">
               <figcaption><span>09</span><strong>Privacy architecture</strong> — Processing stays on-device. No accounts, analytics, or third-party SDKs required.</figcaption>
             </figure>
             <figure class="case-study-visual">
@@ -168,7 +168,7 @@ caseStudy:
               <figcaption><span>10</span><strong>Fail-closed export</strong> — If coverage does not meet safety requirements, the app stops export rather than silently saving an unsafe file.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: iPhone and iPad app screens">Screenshot: iPhone and iPad app — native SwiftUI across both form factors</div>
+              <img src="../images/case-studies/safefaces/11-iphone-ipad.jpg" loading="lazy" alt="Safe Faces native SwiftUI app on iPhone and iPad" class="image-one-window">
               <figcaption><span>11</span><strong>iPhone &amp; iPad</strong> — Native SwiftUI application built for both phone and tablet use cases.</figcaption>
             </figure>
           </div>
@@ -192,15 +192,15 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2">Safe Faces remains in beta, so the outcome is not presented through invented download or conversion metrics. The strongest proof is the shipped experience: a working privacy product available for real-device testing, supported by a complete brand and launch platform.</p>
             </div>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Landing page">Screenshot: Landing page — conversion-focused UX that routes qualified users to TestFlight</div>
+              <img src="../images/case-studies/safefaces/12-landing-page.jpg" loading="lazy" alt="Safe Faces landing page routing users to TestFlight" class="image-one-window">
               <figcaption><span>12</span><strong>Landing page</strong> — Conversion-focused UX that explains the product and routes qualified users to TestFlight.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Interactive product demo">Screenshot: Interactive demo — illustrated characters demonstrating face-covering without real children's photos</div>
+              <img src="../images/case-studies/safefaces/13-interactive-demo.jpg" loading="lazy" alt="Safe Faces interactive demo with illustrated characters" class="image-one-window">
               <figcaption><span>13</span><strong>Interactive demo</strong> — Illustrated characters explain the product ethically—without using real children's faces as marketing material.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: TestFlight acquisition funnel">Screenshot: TestFlight funnel — privacy model, FAQ, and beta signup flow</div>
+              <img src="../images/case-studies/safefaces/14-testflight-funnel.jpg" loading="lazy" alt="Safe Faces TestFlight acquisition funnel" class="image-one-window">
               <figcaption><span>14</span><strong>TestFlight funnel</strong> — Trust sections, parent FAQs, and a clear path from landing page to open beta download.</figcaption>
             </figure>
           </div>
@@ -223,7 +223,7 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2">The result is a cohesive ecosystem where the brand promise, interface, engineering, and marketing all support the same goal: helping adults share childhood moments more responsibly. Parents capture or import a photo or video, automatically cover every detected face, choose which faces should remain visible, and export a privacy-conscious copy ready to share.</p>
             </div>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Brand across app and web">Screenshot: Ecosystem overview — brand, app, and website unified under one visual and messaging system</div>
+              <img src="../images/case-studies/safefaces/15-full-ecosystem.jpg" loading="lazy" alt="Safe Faces full ecosystem — brand, app, and website" class="image-one-window">
               <figcaption><span>15</span><strong>Full ecosystem</strong> — Brand, iOS app, and landing page share one visual system and one privacy promise.</figcaption>
             </figure>
           </div>
