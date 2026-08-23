@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = buildPageMetadata({
   title: "Book a Call — BLURRD Studio",
   description:
-    "Schedule a free 30-minute intro call with BLURRD Studio. Tell us about your project and we'll outline how we can help with branding, web design, and development.",
+    "Schedule a free 15-minute intro call with BLURRD Studio. Tell us about your project and I'll outline how I can help with branding, web design, and development.",
   path: "/book-a-call",
 });
 
@@ -14,7 +14,7 @@ const jsonLd = [
   serviceSchema({
     name: "Project Discovery Call",
     description:
-      "Schedule a free intro call with BLURRD Studio to discuss branding, web design, and development needs.",
+      "Schedule a free 15-minute intro call with BLURRD Studio to discuss branding, web design, and development needs.",
     path: "/book-a-call",
     serviceType: "Consultation",
   }),

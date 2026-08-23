@@ -47,8 +47,8 @@ export default function TestimonialsSection() {
                             alt=""
                             className={
                               testimonial.logo.cover
-                                ? "image-blurrd u-cover"
-                                : "image-blurrd"
+                                ? "image-blurrd testimonial-logo u-cover"
+                                : "image-blurrd testimonial-logo"
                             }
                           />
                         </>

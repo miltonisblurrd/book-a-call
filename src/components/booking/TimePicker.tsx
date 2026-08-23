@@ -29,7 +29,7 @@ export default function TimePicker({
   }
 
   return (
-    <div className="flex flex-col gap-3 p-6 border-l border-gray-100 h-full">
+    <div className="flex flex-col gap-3 p-4 sm:p-6 border-l-0 lg:border-l border-gray-100 h-full">
       {/* Header */}
       <div className="flex items-center justify-between mb-1">
         <div className="font-bold text-[#003399] font-mono">
@@ -79,18 +79,28 @@ export default function TimePicker({
 
         {!loading &&
           slots.map((slot) => {
-            const isSelected =
-              selectedSlot?.start === slot.start;
+            const isSelected = selectedSlot?.start === slot.start;
+            const isOpen = slot.available !== false;
+
             return (
               <button
                 key={slot.start}
-                onClick={() => onSelectSlot(slot)}
-              className={cn(
-                "w-full py-2.5 rounded text-sm font-bold border-2 transition-all font-mono",
-                isSelected
-                  ? "bg-[#003399] text-white border-[#003399]"
-                  : "bg-white text-[#003399] border-[#003399]/30 hover:border-[#003399] hover:bg-[#003399]/5"
-              )}
+                type="button"
+                disabled={!isOpen}
+                onClick={() => {
+                  if (isOpen) onSelectSlot(slot);
+                }}
+                className={cn(
+                  "w-full py-2.5 rounded text-sm font-bold border-2 transition-all font-mono",
+                  !isOpen &&
+                    "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed line-through decoration-gray-300",
+                  isOpen &&
+                    isSelected &&
+                    "bg-[#003399] text-white border-[#003399]",
+                  isOpen &&
+                    !isSelected &&
+                    "bg-white text-[#003399] border-[#003399]/30 hover:border-[#003399] hover:bg-[#003399]/5"
+                )}
               >
                 {displayLabel(slot)}
               </button>

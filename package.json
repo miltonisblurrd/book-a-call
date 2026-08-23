@@ -16,6 +16,8 @@
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@opennextjs/cloudflare": "^1.18.0",
+    "animejs": "^4.5.0",
+    "canvas-confetti": "^1.9.4",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.6.3",
@@ -30,6 +32,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

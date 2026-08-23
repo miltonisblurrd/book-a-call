@@ -2,11 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const SERVICE_LINKS = [
+  { href: "/services/branding", label: "Brand Identity & Kits" },
+  { href: "/services/design", label: "Web & Product Design" },
+  { href: "/services/development", label: "Web & Product Development" },
+] as const;
 
 export default function Navigation() {
   const pathname = usePathname();
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const isActive = (href: string) =>
     href === "/"
@@ -17,38 +24,64 @@ export default function Navigation() {
   const isAboutPage = pathname === "/about";
   const containerClass = isAboutPage ? "container about" : "container";
 
+  useEffect(() => {
+    setMobileOpen(false);
+    setServicesOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.classList.toggle("mobile-nav-open", mobileOpen);
+    return () => document.body.classList.remove("mobile-nav-open");
+  }, [mobileOpen]);
+
   return (
     <nav className="nav-master">
       <div className="nav-top">
         <div className={containerClass}>
-          <div className="wrapper-header">
-            <img
-              sizes="(max-width: 1170px) 100vw, 1170px"
-              srcSet="/images/IMG_6481-p-500.jpg 500w, /images/IMG_6481-p-800.jpg 800w, /images/IMG_6481-p-1080.jpg 1080w, /images/IMG_6481.jpg 1170w"
-              alt="Blurrd's Blurry Selfie"
-              loading="eager"
-              src="/images/IMG_6481.jpg"
-              className="image-header"
-            />
-            <div className="line-divider-vertical u-bg-white" />
-            <div
-              className="image-blurrd"
-              data-rive-url="/logo.riv"
-              data-rive-state-machine="State Machine 1"
-              data-rive-artboard="Artboard"
-              data-rive-autoplay="true"
-              data-rive-is-touch-scroll-enabled="false"
-              data-rive-automatically-handle-events="false"
-              data-rive-fit="contain"
-              data-rive-alignment="center"
-              data-animation-type="rive"
+          <div className="wrapper-header nav-top-row">
+            <Link href="/" className="nav-brand-link" aria-label="BLURRD Studio home">
+              <img
+                sizes="(max-width: 1170px) 100vw, 1170px"
+                srcSet="/images/IMG_6481-p-500.jpg 500w, /images/IMG_6481-p-800.jpg 800w, /images/IMG_6481-p-1080.jpg 1080w, /images/IMG_6481.jpg 1170w"
+                alt="Blurrd's Blurry Selfie"
+                loading="eager"
+                src="/images/IMG_6481.jpg"
+                className="image-header"
+              />
+              <div className="line-divider-vertical u-bg-white" />
+              <div
+                className="image-blurrd"
+                data-rive-url="/logo.riv"
+                data-rive-state-machine="State Machine 1"
+                data-rive-artboard="Artboard"
+                data-rive-autoplay="true"
+                data-rive-is-touch-scroll-enabled="false"
+                data-rive-automatically-handle-events="false"
+                data-rive-fit="contain"
+                data-rive-alignment="center"
+                data-animation-type="rive"
+              >
+                <canvas style={{ height: "100%", width: "100%" }} />
+              </div>
+            </Link>
+
+            <button
+              type="button"
+              className={`mobile-nav-toggle${mobileOpen ? " is-open" : ""}`}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-nav-panel"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              onClick={() => setMobileOpen((v) => !v)}
             >
-              <canvas style={{ height: "100%", width: "100%" }} />
-            </div>
+              <span />
+              <span />
+              <span />
+            </button>
           </div>
         </div>
       </div>
-      <div className="nav-bottom">
+
+      <div className="nav-bottom nav-bottom-desktop">
         <div className={containerClass}>
           <div className="grid-navigation">
             <Link
@@ -80,29 +113,16 @@ export default function Navigation() {
               <nav
                 className={`dropdown-list w-dropdown-list${servicesOpen ? " w--open" : ""}`}
               >
-                <Link
-                  href="/services/branding"
-                  aria-current={pathname === "/services/branding" ? "page" : undefined}
-                  className={`h2 u-underline-none u-mb-1${pathname === "/services/branding" ? " w--current" : ""}`}
-                >
-                  Brand Identity & Kits
-                </Link>
-                <Link
-                  href="/services/design"
-                  aria-current={pathname === "/services/design" ? "page" : undefined}
-                  className={`h2 u-underline-none u-mb-1${pathname === "/services/design" ? " w--current" : ""}`}
-                >
-                  Web & Product Design
-                </Link>
-                <Link
-                  href="/services/development"
-                  aria-current={
-                    pathname === "/services/development" ? "page" : undefined
-                  }
-                  className={`h2 u-underline-none${pathname === "/services/development" ? " w--current" : ""}`}
-                >
-                  Web & Product Development
-                </Link>
+                {SERVICE_LINKS.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    aria-current={pathname === link.href ? "page" : undefined}
+                    className={`h2 u-underline-none u-mb-1${pathname === link.href ? " w--current" : ""}`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
               </nav>
             </div>
             <Link
@@ -122,6 +142,48 @@ export default function Navigation() {
               <h2 className="h2">Blog</h2>
             </Link>
           </div>
+        </div>
+      </div>
+
+      <div
+        id="mobile-nav-panel"
+        className={`mobile-nav-panel${mobileOpen ? " is-open" : ""}`}
+      >
+        <div className="mobile-nav-links">
+          <Link href="/" className={pathname === "/" ? "is-active" : undefined}>
+            Home
+          </Link>
+          <Link
+            href="/services"
+            className={isServicesActive ? "is-active" : undefined}
+          >
+            Services
+          </Link>
+          {SERVICE_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`mobile-nav-sublink${pathname === link.href ? " is-active" : ""}`}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href="/about"
+            className={isActive("/about") ? "is-active" : undefined}
+          >
+            About
+          </Link>
+          <Link
+            href="/blog"
+            className={isActive("/blog") ? "is-active" : undefined}
+          >
+            Blog
+          </Link>
+          <Link href="/faqs">FAQs</Link>
+          <Link href="/book-a-call" className="mobile-nav-cta">
+            Book a 15 Min. Call
+          </Link>
         </div>
       </div>
     </nav>

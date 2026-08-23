@@ -26,7 +26,7 @@ export default function Sidebar({ selectedSlot }: SidebarProps) {
       <div className="flex flex-col gap-3 text-sm" style={{ color: "rgba(255,255,255,0.75)" }}>
         <div className="flex items-center gap-2">
           <ClockIcon />
-          <span>30 minutes</span>
+          <span>15 min</span>
         </div>
 
         {selectedSlot && (

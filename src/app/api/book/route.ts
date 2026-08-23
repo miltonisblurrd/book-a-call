@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { parseISO } from "date-fns";
-import { createCalendarEvent } from "@/lib/google-calendar";
+import {
+  createCalendarEvent,
+  isSlotStillAvailable,
+} from "@/lib/google-calendar";
 import { sendBookingEmail } from "@/lib/email";
 
 const schema = z.object({
@@ -9,6 +12,7 @@ const schema = z.object({
     start: z.string(),
     end: z.string(),
     label: z.string(),
+    available: z.boolean().optional(),
   }),
   name: z.string().min(1),
   email: z.string().email(),
@@ -38,6 +42,28 @@ export async function POST(request: NextRequest) {
   const booking = parsed.data;
   const start = parseISO(booking.slot.start);
   const end = parseISO(booking.slot.end);
+
+  try {
+    const stillOpen = await isSlotStillAvailable(
+      booking.slot.start,
+      booking.slot.end
+    );
+    if (!stillOpen) {
+      return NextResponse.json(
+        {
+          error:
+            "That time was just taken. Please pick another available slot.",
+        },
+        { status: 409 }
+      );
+    }
+  } catch (err) {
+    console.error("[book] availability check", err);
+    return NextResponse.json(
+      { error: "Could not verify availability. Please try again." },
+      { status: 503 }
+    );
+  }
 
   const description = [
     `Name: ${booking.name}`,

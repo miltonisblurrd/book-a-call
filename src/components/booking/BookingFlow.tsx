@@ -87,13 +87,19 @@ export default function BookingFlow() {
     }
   }
 
+  const selectSlot = (slot: TimeSlot) => {
+    if (slot.available === false) return;
+    setSelectedSlot(slot);
+    setTimeout(() => setStep("form"), 300);
+  };
+
   return (
-    <div className="min-h-screen bg-[#f0ede8] flex items-start md:items-center justify-center p-4 py-8 font-mono">
+    <div className="min-h-screen bg-[#f0ede8] flex items-start lg:items-center justify-center p-3 sm:p-4 py-6 sm:py-8 font-mono">
       <div className="w-full max-w-5xl">
 
         {step === "confirmation" && confirmedBooking ? (
           <div>
-            <div className="px-5 py-4 md:px-6 mb-6" style={{ backgroundColor: ORANGE }}>
+            <div className="px-4 py-4 sm:px-5 md:px-6 mb-4 sm:mb-6" style={{ backgroundColor: ORANGE }}>
               <h1 className="text-xl md:text-2xl font-bold tracking-tight" style={{ color: NAVY }}>
                 You&apos;re booked!
               </h1>
@@ -104,8 +110,7 @@ export default function BookingFlow() {
           </div>
         ) : (
           <div>
-            {/* Orange banner */}
-            <div className="px-5 py-4 md:px-6 mb-6" style={{ backgroundColor: ORANGE }}>
+            <div className="px-4 py-4 sm:px-5 md:px-6 mb-4 sm:mb-6" style={{ backgroundColor: ORANGE }}>
               <h1 className="text-xl md:text-2xl font-bold tracking-tight" style={{ color: NAVY }}>
                 Let&apos;s Chat!
               </h1>
@@ -114,27 +119,35 @@ export default function BookingFlow() {
               </p>
             </div>
 
-            {/* Main card */}
             <div style={{ border: `2px solid ${NAVY}` }}>
+              {/* Compact intro — phones + tablets in portrait */}
+              <div className="lg:hidden px-4 py-4" style={{ backgroundColor: NAVY }}>
+                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: ORANGE }}>
+                  blurrd studio
+                </p>
+                <h2 className="text-lg font-bold text-white">Intro Call · 15 min</h2>
+                <p className="text-sm mt-1 leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>
+                  Google Meet link on confirm · America / Los Angeles
+                </p>
+              </div>
+
               <div
                 className={
                   step === "datetime"
-                    ? "flex flex-col md:grid md:grid-cols-[260px_1fr_260px]"
-                    : "flex flex-col md:grid md:grid-cols-[260px_1fr]"
+                    ? "flex flex-col lg:grid lg:grid-cols-[240px_minmax(0,1fr)_240px]"
+                    : "flex flex-col lg:grid lg:grid-cols-[240px_minmax(0,1fr)]"
                 }
               >
-                {/* Sidebar — desktop only */}
-                <div className="hidden md:block" style={{ backgroundColor: NAVY }}>
+                <div className="hidden lg:block" style={{ backgroundColor: NAVY }}>
                   <Sidebar selectedSlot={step === "form" ? selectedSlot : null} />
                 </div>
 
-                {/* Calendar or Form */}
                 <AnimatePresence mode="wait">
                   {step === "datetime" && (
                     <motion.div
                       key="calendar"
                       {...SLIDE}
-                      className="md:[border-left:2px_solid_#003399]"
+                      className="lg:[border-left:2px_solid_#003399] min-w-0"
                     >
                       <CalendarPicker
                         selectedDate={selectedDate}
@@ -144,17 +157,13 @@ export default function BookingFlow() {
                         }}
                       />
 
-                      {/* Mobile TimePicker — below calendar */}
-                      <div className="md:hidden" style={{ borderTop: `2px solid ${NAVY}` }}>
+                      <div className="lg:hidden" style={{ borderTop: `2px solid ${NAVY}` }}>
                         {selectedDate ? (
                           <TimePicker
                             date={selectedDate}
                             slots={slots}
                             selectedSlot={selectedSlot}
-                            onSelectSlot={(slot) => {
-                              setSelectedSlot(slot);
-                              setTimeout(() => setStep("form"), 300);
-                            }}
+                            onSelectSlot={selectSlot}
                             loading={slotsLoading}
                           />
                         ) : (
@@ -172,7 +181,7 @@ export default function BookingFlow() {
                     <motion.div
                       key="form"
                       {...SLIDE}
-                      className="md:[border-left:2px_solid_#003399]"
+                      className="lg:[border-left:2px_solid_#003399] min-w-0"
                     >
                       <IntakeForm
                         slot={selectedSlot}
@@ -181,7 +190,7 @@ export default function BookingFlow() {
                         submitting={submitting}
                       />
                       {error && (
-                        <p className="text-xs text-red-500 text-center pb-4">
+                        <p className="text-xs text-red-500 text-center pb-4 px-4">
                           {error}
                         </p>
                       )}
@@ -189,18 +198,14 @@ export default function BookingFlow() {
                   )}
                 </AnimatePresence>
 
-                {/* Desktop TimePicker — 3rd column */}
                 {step === "datetime" && (
-                  <div className="hidden md:block" style={{ borderLeft: `2px solid ${NAVY}` }}>
+                  <div className="hidden lg:block min-w-0" style={{ borderLeft: `2px solid ${NAVY}` }}>
                     {selectedDate ? (
                       <TimePicker
                         date={selectedDate}
                         slots={slots}
                         selectedSlot={selectedSlot}
-                        onSelectSlot={(slot) => {
-                          setSelectedSlot(slot);
-                          setTimeout(() => setStep("form"), 300);
-                        }}
+                        onSelectSlot={selectSlot}
                         loading={slotsLoading}
                       />
                     ) : (

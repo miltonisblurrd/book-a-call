@@ -2,6 +2,8 @@ export type TimeSlot = {
   start: string; // ISO string
   end: string;   // ISO string
   label: string; // "9:00am"
+  /** false = shown grayed out (calendar busy or held for scarcity) */
+  available: boolean;
 };
 
 export type BookingStep = "datetime" | "form" | "confirmation";

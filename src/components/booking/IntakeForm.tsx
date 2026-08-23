@@ -49,7 +49,7 @@ export default function IntakeForm({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-5 p-6 overflow-y-auto"
+      className="flex flex-col gap-5 p-4 sm:p-6 overflow-y-auto"
     >
       {/* Selected time reminder */}
       <div className="flex items-center gap-2 text-sm text-gray-500 bg-gray-50 rounded-xl px-4 py-3">

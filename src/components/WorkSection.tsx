@@ -1,36 +1,111 @@
 "use client";
 
 import { WORK_PROJECTS, type HoverProp, type WorkProject } from "@/data/work-projects";
+import { animate, spring, utils } from "animejs";
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
 
 const PANEL_TRANSITION_MS = 450;
 
+function prefersReducedMotion() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 function hoverPropStyle(prop: HoverProp): CSSProperties {
   return {
     ["--prop-size" as string]: `${prop.size}px`,
     ["--prop-rotate" as string]: `${prop.rotate}deg`,
-    ["--prop-delay-in" as string]: `${prop.delayIn}ms`,
-    ["--prop-delay-out" as string]: `${prop.delayOut}ms`,
     ["--prop-x-offset" as string]: prop.xOffset ?? "0px",
     ["--prop-y-offset" as string]: prop.yOffset ?? "0px",
   };
 }
 
 function WorkHoverProps({ props, active }: { props: HoverProp[]; active: boolean }) {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const visualsRef = useRef<(HTMLImageElement | null)[]>([]);
+  const readyRef = useRef(false);
+  const generationRef = useRef(0);
+
+  // Set resting pose once on mount so Anime.js can interrupt cleanly later.
+  useEffect(() => {
+    const visuals = visualsRef.current.filter(Boolean) as HTMLImageElement[];
+    visuals.forEach((el, index) => {
+      const prop = props[index];
+      if (!prop) return;
+      utils.set(el, {
+        scale: 0.18,
+        opacity: 0,
+        rotate: `${prop.rotate}deg`,
+      });
+    });
+    readyRef.current = true;
+  }, [props]);
+
+  useEffect(() => {
+    if (!readyRef.current) return;
+
+    const visuals = visualsRef.current.filter(Boolean) as HTMLImageElement[];
+    const reduced = prefersReducedMotion();
+    const generation = ++generationRef.current;
+
+    visuals.forEach((el, index) => {
+      const prop = props[index];
+      if (!prop) return;
+
+      if (active) {
+        el.classList.add("is-visible");
+        animate(el, {
+          scale: 1,
+          opacity: 1,
+          rotate: `${prop.rotate}deg`,
+          delay: reduced ? 0 : Math.round(prop.delayIn * 0.65),
+          ease: reduced
+            ? "linear"
+            : spring({
+                bounce: 0.38,
+                duration: 480,
+              }),
+          composition: "replace",
+        });
+      } else {
+        animate(el, {
+          scale: 0.18,
+          opacity: 0,
+          rotate: `${prop.rotate}deg`,
+          delay: reduced ? 0 : Math.round(prop.delayOut * 0.45),
+          duration: reduced ? 0 : 220,
+          ease: "in(2.4)",
+          composition: "replace",
+          onComplete: () => {
+            if (generationRef.current !== generation) return;
+            el.classList.remove("is-visible");
+          },
+        });
+      }
+    });
+  }, [active, props]);
+
   return (
-    <div className="work-hover-props" aria-hidden="true">
+    <div ref={rootRef} className="work-hover-props" aria-hidden="true">
       {props.map((prop, index) => (
-        <img
+        <div
           key={`${prop.src}-${index}`}
-          className={`work-hover-prop work-hover-prop--${prop.anchor}${active ? " is-visible" : ""}`}
-          src={prop.src}
-          alt=""
-          draggable={false}
+          className={`work-hover-prop work-hover-prop--${prop.anchor}`}
           data-anchor={prop.anchor}
           style={hoverPropStyle(prop)}
-        />
+        >
+          <img
+            ref={(node) => {
+              visualsRef.current[index] = node;
+            }}
+            className="work-hover-prop-visual"
+            src={prop.src}
+            alt=""
+            draggable={false}
+          />
+        </div>
       ))}
     </div>
   );
@@ -70,10 +145,14 @@ function WorkProjectThumbnail({
       }
     };
 
-    void startPlayback();
+    // Small beat so sticker springs lead, then video eases in.
+    const timer = window.setTimeout(() => {
+      void startPlayback();
+    }, prefersReducedMotion() ? 0 : 90);
 
     return () => {
       cancelled = true;
+      window.clearTimeout(timer);
     };
   }, [active, project.hoverVideo]);
 
@@ -228,6 +307,18 @@ function ProjectDetailOverlay({
             <p className="text-paragraph u-extra-bold u-text-white u-mb-0">
               {project.name}
             </p>
+            {project.categories.length > 0 ? (
+              <>
+                <span className="work-overlay-header-divider" aria-hidden="true" />
+                <div className="work-overlay-header-tags">
+                  {project.categories.map((category) => (
+                    <span key={category} className="work-overlay-tag">
+                      {category}
+                    </span>
+                  ))}
+                </div>
+              </>
+            ) : null}
             <ProjectHeaderCta project={project} />
           </div>
         </div>

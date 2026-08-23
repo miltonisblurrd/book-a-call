@@ -395,6 +395,10 @@ blockquote {
   grid-template-columns: 1fr 1fr 1.2fr;
 }
 
+.grid-3.pricing > .tabs-pricing {
+  grid-area: span 1 / span 2 / span 1 / span 2;
+}
+
 .image-partner {
   cursor: wait;
   margin-left: auto;
@@ -1543,6 +1547,16 @@ blockquote {
   font-weight: 600;
 }
 
+.wrapper-footer a.text-footer {
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.wrapper-footer a.text-footer:hover {
+  color: #ff6601;
+  text-decoration: underline;
+}
+
 .text-footer.u-text-gray {
   color: #7a7a7a;
   text-align: center;
@@ -1845,6 +1859,16 @@ blockquote {
   width: 100%;
   padding-left: 12px;
   padding-right: 12px;
+}
+
+button.tab-pricing {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  background-color: #dddddd;
+  cursor: pointer;
 }
 
 .tab-pricing.w--current {

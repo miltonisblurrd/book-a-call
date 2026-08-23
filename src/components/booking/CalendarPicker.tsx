@@ -41,12 +41,14 @@ export default function CalendarPicker({
 
   function isAvailable(date: Date) {
     if (isBefore(date, today)) return false;
+    const weekday = getDay(date); // 0 = Sun, 6 = Sat
+    if (weekday === 0 || weekday === 6) return false;
     if (!availableDates) return true; // optimistic until fetched
     return availableDates.includes(format(date, "yyyy-MM-dd"));
   }
 
   return (
-    <div className="flex flex-col gap-4 p-6">
+    <div className="flex flex-col gap-4 p-4 sm:p-6">
       {/* Month header */}
       <div className="flex items-center justify-between">
         <div className="flex items-baseline gap-2">
@@ -104,7 +106,7 @@ export default function CalendarPicker({
               onClick={() => available && onSelectDate(day)}
               disabled={!available}
               className={cn(
-                "relative flex items-center justify-center rounded-full w-9 h-9 text-sm font-medium mx-auto transition-all font-mono",
+                "relative flex items-center justify-center rounded-full w-10 h-10 sm:w-9 sm:h-9 text-sm font-medium mx-auto transition-all font-mono",
                 available && !selected
                   ? "text-[#003399] hover:bg-[#003399]/10 cursor-pointer"
                   : "",

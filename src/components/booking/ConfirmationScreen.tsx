@@ -1,18 +1,78 @@
 "use client";
 
+import { useEffect } from "react";
 import { format, parseISO } from "date-fns";
+import confetti from "canvas-confetti";
 import type { BookingPayload } from "@/types/booking";
 
 type ConfirmationScreenProps = {
   booking: BookingPayload;
 };
 
+const CONFETTI_COLORS = ["#003399", "#ff6601", "#fbcc9b", "#b7cafb", "#ffffff"];
+
+function fireConfettiEverywhere() {
+  const defaults = {
+    colors: CONFETTI_COLORS,
+    disableForReducedMotion: true,
+  };
+
+  // Big center burst
+  confetti({
+    ...defaults,
+    particleCount: 160,
+    spread: 100,
+    startVelocity: 55,
+    origin: { x: 0.5, y: 0.55 },
+  });
+
+  // Side cannons
+  confetti({
+    ...defaults,
+    particleCount: 90,
+    angle: 60,
+    spread: 70,
+    startVelocity: 65,
+    origin: { x: 0, y: 0.7 },
+  });
+  confetti({
+    ...defaults,
+    particleCount: 90,
+    angle: 120,
+    spread: 70,
+    startVelocity: 65,
+    origin: { x: 1, y: 0.7 },
+  });
+
+  // Keep raining from the top for a few beats
+  const end = Date.now() + 2200;
+  const frame = () => {
+    confetti({
+      ...defaults,
+      particleCount: 6,
+      startVelocity: 25,
+      spread: 360,
+      ticks: 200,
+      origin: {
+        x: Math.random(),
+        y: Math.random() * 0.25,
+      },
+    });
+    if (Date.now() < end) requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+}
+
 export default function ConfirmationScreen({ booking }: ConfirmationScreenProps) {
   const start = parseISO(booking.slot.start);
   const end = parseISO(booking.slot.end);
 
+  useEffect(() => {
+    fireConfettiEverywhere();
+  }, []);
+
   return (
-    <div className="flex flex-col items-center justify-center gap-6 p-10 text-center min-h-[400px] font-mono">
+    <div className="flex flex-col items-center justify-center gap-6 p-6 sm:p-10 text-center min-h-[400px] font-mono">
       {/* Check icon */}
       <div className="w-16 h-16 flex items-center justify-center border-4 border-[#003399]">
         <svg
@@ -35,7 +95,7 @@ export default function ConfirmationScreen({ booking }: ConfirmationScreenProps)
         </h2>
         <p className="text-[#003399]/60 text-sm max-w-xs mx-auto">
           A Google Calendar invite has been sent to{" "}
-          <strong className="text-[#003399]">{booking.email}</strong>. We&apos;re
+          <strong className="text-[#003399]">{booking.email}</strong>. I&apos;m
           looking forward to chatting.
         </p>
       </div>
@@ -47,7 +107,7 @@ export default function ConfirmationScreen({ booking }: ConfirmationScreenProps)
           label="Time"
           value={`${format(start, "h:mmaaa")} – ${format(end, "h:mmaaa")}`}
         />
-        <SummaryRow label="Duration" value="30 minutes" />
+        <SummaryRow label="Duration" value="15 min" />
         <SummaryRow label="Name" value={booking.name} />
         <SummaryRow label="Email" value={booking.email} />
       </div>
