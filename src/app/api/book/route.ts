@@ -39,7 +39,13 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const booking = parsed.data;
+  const booking = {
+    ...parsed.data,
+    slot: {
+      ...parsed.data.slot,
+      available: parsed.data.slot.available ?? true,
+    },
+  };
   const start = parseISO(booking.slot.start);
   const end = parseISO(booking.slot.end);
 
