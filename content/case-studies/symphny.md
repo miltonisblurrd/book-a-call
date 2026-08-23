@@ -65,11 +65,11 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2">Core promise: calmer, more coordinated operations. Fewer broken handoffs, clearer visibility, governed intelligence, and ongoing ownership. The canonical line—<em>Symphny orchestrates the systems, workflows, and intelligence behind modern operations—so talented teams and capable tools perform as one</em>—anchors every page, proposal, and product surface.</p>
             </div>
             <figure class="case-study-visual">
-              <img src="../images/symphny-brand-foundation.png" loading="lazy" alt="Symphny brand foundation one-pager — clarity, coordination, and performance pillars" class="image-one-window">
+              <img src="../images/case-studies/symphny/01-brand-in-one-page.jpg" loading="lazy" alt="Symphny brand foundation one-pager — clarity, coordination, and performance pillars" class="image-one-window">
               <figcaption><span>01</span><strong>Brand in one page</strong> — The foundation document distills category, promise, and the three pillars buyers need before any technical detail.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <img src="../images/symphny-positioning.png" loading="lazy" alt="Symphny positioning framework — who Symphny is for, what it delivers, and how it differs from vendors and automation shops" class="image-one-window">
+              <img src="../images/case-studies/symphny/02-positioning-architecture.jpg" loading="lazy" alt="Symphny positioning framework — who it is for, what it delivers, and how it differs" class="image-one-window">
               <figcaption><span>02</span><strong>Positioning architecture</strong> — A structured for/who face/is/that delivers/unlike/because model keeps sales and product language aligned.</figcaption>
             </figure>
           </div>
@@ -93,11 +93,11 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2">The message hierarchy always leads with the business problem: disconnected systems and broken handoffs create operational noise. From there, buyers move through the model, the orchestration layer, the outcome (calmer operations and clearer leadership visibility), and the next step—identify one critical journey and map where coordination breaks.</p>
             </div>
             <figure class="case-study-visual">
-              <img src="../images/symphny-model.png" loading="lazy" alt="Symphny five-layer orchestra model — musicians, sheet music, performers, orchestra pit, conductor" class="image-one-window">
+              <img src="../images/case-studies/symphny/03-orchestra-model.jpg" loading="lazy" alt="Symphny five-layer orchestra model — musicians, sheet music, performers, orchestra pit, conductor" class="image-one-window">
               <figcaption><span>03</span><strong>Orchestra model</strong> — Five labeled layers translate technical architecture into a metaphor operators and executives can both use.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <img src="../images/symphny-message-hierarchy.png" loading="lazy" alt="Symphny message hierarchy — problem, difference, proof logic, outcome, and call to action in order" class="image-one-window">
+              <img src="../images/case-studies/symphny/04-message-hierarchy.jpg" loading="lazy" alt="Symphny message hierarchy — problem, difference, proof logic, outcome, and call to action" class="image-one-window">
               <figcaption><span>04</span><strong>Message hierarchy</strong> — Coordination first, outcomes second, approach third, technology last. AI creates interest but does not become the category.</figcaption>
             </figure>
           </div>
@@ -122,15 +122,15 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2"><strong>Imagery &amp; motion:</strong> Orchestras, conductors, sheet music, architectural scale, halftone engraving, glass, and liquid metal—never robots, neon AI chips, or purple gradients. Motion favors slow drift, controlled reveals, and subtle shimmer rather than noisy effects. Interfaces feel observable and controlled: explicit status, ownership, next action, and error recovery.</p>
             </div>
             <figure class="case-study-visual">
-              <img src="../images/symphny-colors.png" loading="lazy" alt="Symphny color palette — Orchestra Ink, Studio Paper, Conductor Gold, and brand accents" class="image-one-window">
+              <img src="../images/case-studies/symphny/05-scalable-visual-language.jpg" loading="lazy" alt="Symphny scalable visual language — reusable brand patterns and motifs" class="image-one-window">
               <figcaption><span>05</span><strong>Scalable visual language</strong> — Reusable patterns give the team room to add capabilities without fragmenting the brand.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <img src="../images/symphny-color-type.png" loading="lazy" alt="Symphny color palette and typography scale — Orchestra Ink, Studio Paper, Conductor Gold, Inter and IBM Plex Mono pairings" class="image-one-window">
+              <img src="../images/case-studies/symphny/06-color-and-type-system.jpg" loading="lazy" alt="Symphny color palette and typography scale" class="image-one-window">
               <figcaption><span>06</span><strong>Color &amp; type system</strong> — A documented palette and type scale keep marketing and product surfaces visually aligned.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Wordmark and logo usage">Screenshot: Wordmark clear space, minimum sizes, and approved light/dark applications</div>
+              <img src="../images/case-studies/symphny/07-wordmark-and-identity.jpg" loading="lazy" alt="Symphny wordmark and identity usage rules" class="image-one-window">
               <figcaption><span>07</span><strong>Wordmark &amp; identity</strong> — The Symphny wordmark signals confidence through space and restraint, with documented usage rules.</figcaption>
             </figure>
           </div>
@@ -153,19 +153,19 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2">Responsive orchestra, liquid-metal, and glass-grid visual systems carry the brand into the interface. The homepage AI chat experience is grounded in Symphny's canonical business information—intentionally positioned as guided discovery, not an autonomous business operator. AI supports understanding while orchestration, context, and human ownership remain central.</p>
             </div>
             <figure class="case-study-visual">
-              <img src="../images/20260411202416001.gif" loading="lazy" alt="Symphny homepage introducing its AI data orchestration platform" class="image-one-window">
+              <img src="../images/case-studies/symphny/08-homepage-narrative.jpg" loading="lazy" alt="Symphny homepage narrative introducing the orchestration platform" class="image-one-window">
               <figcaption><span>08</span><strong>Homepage narrative</strong> — The value proposition leads, so buyers understand what Symphny orchestrates before they encounter product detail.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <img src="../images/Frame-47417_1.avif" loading="lazy" alt="Symphny responsive product website design" class="image-one-window">
+              <img src="../images/case-studies/symphny/09-responsive-system.jpg" loading="lazy" alt="Symphny responsive website system across devices" class="image-one-window">
               <figcaption><span>09</span><strong>Responsive system</strong> — A consistent visual language keeps the experience credible across devices and buying contexts.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: AI discovery chat interface">Screenshot: Homepage AI chat — guided discovery grounded in canonical brand and service information</div>
+              <img src="../images/case-studies/symphny/10-ai-assisted-discovery.jpg" loading="lazy" alt="Symphny AI-assisted discovery chat experience" class="image-one-window">
               <figcaption><span>10</span><strong>AI-assisted discovery</strong> — Conversational discovery answers questions about services, pricing, and philosophy using a controlled source of truth.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Editorial content or services page">Screenshot: Services, pricing, or editorial page — outcome-led copy with calm authority</div>
+              <img src="../images/case-studies/symphny/11-editorial-and-services.jpg" loading="lazy" alt="Symphny editorial and services pages" class="image-one-window">
               <figcaption><span>11</span><strong>Editorial &amp; services</strong> — Long-form resources and service pages follow the writing system: diagnostic, operational, and free of hype.</figcaption>
             </figure>
           </div>
@@ -190,15 +190,15 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2"><strong>Stack:</strong> Next.js 15 and React 19 on the frontend; Anthropic SDK and MCP for intelligence; Supabase, PostgreSQL, and Drizzle for data; Clerk, Stripe, and Resend for identity, billing, and communications; OpenNext and Cloudflare Workers for edge-oriented delivery.</p>
             </div>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Technology architecture diagram">Screenshot: Architecture diagram — public site, orchestration layer, and business infrastructure</div>
+              <img src="../images/case-studies/symphny/12-architecture-overview.jpg" loading="lazy" alt="Symphny architecture overview — public site, orchestration, and infrastructure" class="image-one-window">
               <figcaption><span>12</span><strong>Architecture overview</strong> — Public experience, orchestration and intelligence, and business infrastructure connected in one diagram.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Client portal dashboard">Screenshot: Client portal — onboarding, roadmaps, notifications, or billing management</div>
+              <img src="../images/case-studies/symphny/13-client-operations-portal.jpg" loading="lazy" alt="Symphny client operations portal" class="image-one-window">
               <figcaption><span>13</span><strong>Client operations portal</strong> — Authenticated areas for clients and admins with guided onboarding and operational visibility.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: MCP or content engine interface">Screenshot: MCP tool access, content engine, or admin workflow management</div>
+              <img src="../images/case-studies/symphny/14-mcp-and-content-systems.jpg" loading="lazy" alt="Symphny MCP and content systems" class="image-one-window">
               <figcaption><span>14</span><strong>MCP &amp; content systems</strong> — Structured tool access and editorial workflows keep intelligence inside defined operational roles.</figcaption>
             </figure>
           </div>
@@ -222,11 +222,11 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2">Public messaging distinguishes principle, design intent, implemented capability, verified control, and certified claim. The strongest credible language: Symphny is <em>designed around governance, human control, observability, and permissioned access</em>—not unsupported certifications or guaranteed ROI.</p>
             </div>
             <figure class="case-study-visual">
-              <img src="../images/symphny-voice-tone.png" loading="lazy" alt="Symphny voice and tone guidelines — cold vs. warm, traits to use, and language to avoid" class="image-one-window">
+              <img src="../images/case-studies/symphny/15-voice-and-tone.jpg" loading="lazy" alt="Symphny voice and tone guidelines" class="image-one-window">
               <figcaption><span>15</span><strong>Voice &amp; tone</strong> — Guidelines keep copy calm, composed, and outcome-led across marketing, product, and sales.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <img src="../images/symphny-trust-claims.png" loading="lazy" alt="Symphny trust and claims section — responsible language vs. claims requiring evidence" class="image-one-window">
+              <img src="../images/case-studies/symphny/16-trust-and-claims.jpg" loading="lazy" alt="Symphny trust and claims guidance" class="image-one-window">
               <figcaption><span>16</span><strong>Trust &amp; claims</strong> — An evidence ladder ensures public language matches what the system can actually prove.</figcaption>
             </figure>
           </div>
