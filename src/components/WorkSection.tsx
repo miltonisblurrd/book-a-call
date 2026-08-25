@@ -323,13 +323,14 @@ function ProjectDetailOverlay({
           </div>
         </div>
         {project.overlayImages.map((image, index) => (
-          <img
-            key={`${image.src}-${index}`}
-            src={image.src}
-            loading="lazy"
-            alt=""
-            className={image.className ?? "image-one-window"}
-          />
+          <div key={`${image.src}-${index}`} className="work-overlay-shot">
+            <img
+              src={image.src}
+              loading="lazy"
+              alt=""
+              className={image.className ?? "image-one-window"}
+            />
+          </div>
         ))}
       </div>
       <div

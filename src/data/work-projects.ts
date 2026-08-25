@@ -79,9 +79,42 @@ export const WORK_PROJECTS: WorkProject[] = [
       },
     ],
     overlayImages: [
-      { src: "/images/20260411202416001.gif", className: "image-one-window" },
-      { src: "/images/Frame-47417_1.avif", className: "image-one-window" },
-      { src: "/images/Group-47633_1.avif", className: "image-one-window" },
+      {
+        src: "/images/case-studies/symphny/07-wordmark-and-identity.jpg",
+        className: "image-one-window",
+      },
+      {
+        src: "/images/case-studies/symphny/01-brand-in-one-page.jpg",
+        className: "image-one-window",
+      },
+      {
+        src: "/images/case-studies/symphny/06-color-and-type-system.jpg",
+        className: "image-one-window",
+      },
+      {
+        src: "/images/case-studies/symphny/03-orchestra-model.jpg",
+        className: "image-one-window",
+      },
+      {
+        src: "/images/case-studies/symphny/09-responsive-system.jpg",
+        className: "image-one-window",
+      },
+      {
+        src: "/images/case-studies/symphny/10-ai-assisted-discovery.jpg",
+        className: "image-one-window",
+      },
+      {
+        src: "/images/case-studies/symphny/12-architecture-overview.jpg",
+        className: "image-one-window",
+      },
+      {
+        src: "/images/case-studies/symphny/13-client-operations-portal.jpg",
+        className: "image-one-window",
+      },
+      {
+        src: "/images/case-studies/symphny/14-mcp-and-content-systems.jpg",
+        className: "image-one-window",
+      },
     ],
   },
   {

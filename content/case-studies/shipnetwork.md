@@ -131,7 +131,7 @@ caseStudy:
               <figcaption><span>06</span><strong>Rebuilt homepage</strong> — A cleaner layout with stronger hierarchy, client proof, and a balance of conversion and content paths.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <img src="../images/Frame-47407_1.avif" loading="lazy" alt="ShipNetwork website page designs" class="image-one-window">
+              <img src="../images/case-studies/shipnetwork/07-page-system.jpg" loading="lazy" alt="ShipNetwork page system — 3PL services hub and shared service page templates" class="image-one-window">
               <figcaption><span>07</span><strong>Page system</strong> — Service, industry, and resource pages rebuilt on shared templates for consistency at scale.</figcaption>
             </figure>
             <figure class="case-study-visual">
@@ -139,7 +139,7 @@ caseStudy:
               <figcaption><span>08</span><strong>Component architecture</strong> — A streamlined Webflow system replacing 1,400+ class names with a maintainable component library.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <img src="../images/Group-47631_1.avif" loading="lazy" alt="ShipNetwork responsive web design" class="image-one-window">
+              <img src="../images/case-studies/shipnetwork/09-responsive-system.jpg" loading="lazy" alt="ShipNetwork responsive homepage across desktop, tablet, and mobile" class="image-one-window">
               <figcaption><span>09</span><strong>Responsive system</strong> — Layouts adapt cleanly across breakpoints so 700+ pages stay consistent on every device.</figcaption>
             </figure>
           </div>
@@ -163,15 +163,15 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2">That shift supports ShipNetwork's actual sales motion. Many of their best clients come from referrals and long relationships—buyers who needed to trust the partner before signing. The site now reflects that reality.</p>
             </div>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Resources and guides hub">Screenshot: Resources hub — guides, ebooks, and educational content for nurture-stage buyers</div>
+              <img src="../images/case-studies/shipnetwork/10-resource-hub.jpg" loading="lazy" alt="ShipNetwork resources hub — hero and resource grid" class="image-one-window">
               <figcaption><span>10</span><strong>Resource hub</strong> — Guides and educational content give prospects value before they are ready for a sales conversation.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Newsletter or ebook landing page">Screenshot: Ebook or newsletter signup — lower-commitment funnel for long-cycle nurture</div>
+              <img src="../images/case-studies/shipnetwork/11-nurture-funnels.jpg" loading="lazy" alt="ShipNetwork nurture funnel — Andie multi-channel fulfillment story page" class="image-one-window">
               <figcaption><span>11</span><strong>Nurture funnels</strong> — Download and subscribe paths designed for buyers who need more time—and more proof—before converting.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Content page layout">Screenshot: Guide or blog page — content-first layout with secondary conversion paths</div>
+              <img src="../images/case-studies/shipnetwork/12-content-first.jpg" loading="lazy" alt="ShipNetwork 3PL 101 educational content page" class="image-one-window">
               <figcaption><span>12</span><strong>Content-first layouts</strong> — Pages built to inform and build trust, with CTAs that support the buyer's stage—not just the sales team's quota.</figcaption>
             </figure>
           </div>
@@ -199,7 +199,7 @@ caseStudy:
               <figcaption><span>13</span><strong>Persona page — Audience 1</strong> — A dedicated ad landing page with messaging and design tuned to the first target persona.</figcaption>
             </figure>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Persona landing page 2">Screenshot: Persona landing page 2 — tailored layout, headline, and proof points for audience two</div>
+              <img src="../images/case-studies/shipnetwork/14-persona-audience-2.jpg" loading="lazy" alt="ShipNetwork persona landing page for audience 2 — layered quote, margin, and dashboard sections" class="image-one-window">
               <figcaption><span>14</span><strong>Persona page — Audience 2</strong> — Separate design and copy emphasis for the second persona's priorities and pain points.</figcaption>
             </figure>
             <figure class="case-study-visual">
@@ -226,7 +226,7 @@ caseStudy:
               <p class="text-paragraph u-text-gray u-mt-2">That integration means location data, lead routing, and CRM workflows stay in sync. When a prospect explores fulfillment centers on the map, the experience can reflect real operational data and feed intelligence back into HubSpot for sales and marketing follow-up. It is the kind of bespoke functionality enterprise Webflow makes possible when paired with a clear integration strategy.</p>
             </div>
             <figure class="case-study-visual">
-              <div class="case-study-image-placeholder" role="img" aria-label="Screenshot placeholder: Fulfillment network map widget">Screenshot: Custom fulfillment network map — interactive locations tied to HubSpot CRM</div>
+              <img src="../images/case-studies/shipnetwork/16-network-map-widget.jpg" loading="lazy" alt="ShipNetwork network map widget — interactive nationwide fulfillment centers with zone data" class="image-one-window">
               <figcaption><span>16</span><strong>Network map widget</strong> — A custom-built map showing ShipNetwork's nationwide fulfillment centers with CRM-connected data.</figcaption>
             </figure>
             <figure class="case-study-visual">
