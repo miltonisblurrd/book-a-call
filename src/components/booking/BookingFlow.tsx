@@ -43,6 +43,9 @@ export default function BookingFlow({ embedded = false }: BookingFlowProps) {
   const [submitting, setSubmitting] = useState(false);
   const [confirmedBooking, setConfirmedBooking] = useState<BookingPayload | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [availabilityError, setAvailabilityError] = useState<string | null>(
+    null
+  );
 
   const BASE = "";
 
@@ -50,14 +53,27 @@ export default function BookingFlow({ embedded = false }: BookingFlowProps) {
     setSlotsLoading(true);
     setSlots([]);
     setSelectedSlot(null);
+    setAvailabilityError(null);
     try {
       const dateStr = format(date, "yyyy-MM-dd");
       const res = await fetch(`${BASE}/api/availability?date=${dateStr}`);
-      if (!res.ok) throw new Error("Failed to fetch availability");
-      const data = await res.json();
+      const data = (await res.json().catch(() => ({}))) as {
+        slots?: TimeSlot[];
+        error?: string;
+      };
+      if (!res.ok) {
+        throw new Error(
+          data.error ?? "Could not load availability. Please try again."
+        );
+      }
       setSlots(data.slots ?? []);
-    } catch {
+    } catch (err) {
       setSlots([]);
+      setAvailabilityError(
+        err instanceof Error
+          ? err.message
+          : "Could not load availability. Please try again."
+      );
     } finally {
       setSlotsLoading(false);
     }
@@ -175,6 +191,7 @@ export default function BookingFlow({ embedded = false }: BookingFlowProps) {
                             selectedSlot={selectedSlot}
                             onSelectSlot={selectSlot}
                             loading={slotsLoading}
+                            error={availabilityError}
                           />
                         ) : (
                           <div className="flex items-center justify-center py-8 px-6">
@@ -217,6 +234,7 @@ export default function BookingFlow({ embedded = false }: BookingFlowProps) {
                         selectedSlot={selectedSlot}
                         onSelectSlot={selectSlot}
                         loading={slotsLoading}
+                        error={availabilityError}
                       />
                     ) : (
                       <div className="flex items-center justify-center h-full p-6">

@@ -14,11 +14,18 @@ export async function GET(request: NextRequest) {
 
   try {
     const slots = await getAvailability(date);
-  return NextResponse.json({ slots });
+    return NextResponse.json({ slots });
   } catch (err) {
     console.error("[availability]", err);
+    const message =
+      err instanceof Error ? err.message : "Failed to fetch availability.";
+    const isConfig = message.includes("Calendar not configured");
     return NextResponse.json(
-      { error: "Failed to fetch availability." },
+      {
+        error: isConfig
+          ? "Booking calendar is not configured on the server."
+          : "Failed to fetch availability.",
+      },
       { status: 500 }
     );
   }

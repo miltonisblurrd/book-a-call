@@ -1,12 +1,3 @@
-import {
-  addMinutes,
-  format,
-  getDay,
-  parseISO,
-  setHours,
-  setMinutes,
-  startOfDay,
-} from "date-fns";
 import type { TimeSlot } from "@/types/booking";
 
 const DURATION_MINUTES = parseInt(
@@ -19,19 +10,52 @@ const LAST_SLOT_HOUR = 16;
 const LAST_SLOT_MINUTE = 30;
 /** Fraction of free slots to show as already booked (visual scarcity). */
 const FAKE_BUSY_PERCENT = 38;
+const BOOKING_TIMEZONE = "America/Los_Angeles";
 
-function formatSlotLabel(date: Date): string {
-  return format(date, "h:mmaaa");
+function pad2(n: number): string {
+  return String(n).padStart(2, "0");
 }
 
-function isWeekend(date: Date): boolean {
-  const day = getDay(date); // 0 = Sun, 6 = Sat
-  return day === 0 || day === 6;
+/**
+ * Convert a wall-clock time in America/Los_Angeles on YYYY-MM-DD to a UTC Date.
+ * Avoids depending on the server's local timezone (Vercel = UTC).
+ */
+function laLocalToUtc(dateStr: string, hour: number, minute: number): Date {
+  const asUtc = new Date(
+    `${dateStr}T${pad2(hour)}:${pad2(minute)}:00.000Z`
+  );
+  const inLa = new Date(
+    asUtc.toLocaleString("en-US", { timeZone: BOOKING_TIMEZONE })
+  );
+  const inUtc = new Date(asUtc.toLocaleString("en-US", { timeZone: "UTC" }));
+  return new Date(asUtc.getTime() + (inUtc.getTime() - inLa.getTime()));
+}
+
+function formatSlotLabel(date: Date): string {
+  return new Intl.DateTimeFormat("en-US", {
+    timeZone: BOOKING_TIMEZONE,
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  })
+    .format(date)
+    .toLowerCase()
+    .replace(/\s/g, "")
+    .replace(":00", "");
+}
+
+function isWeekendInLa(dateStr: string): boolean {
+  const midday = laLocalToUtc(dateStr, 12, 0);
+  const weekday = new Intl.DateTimeFormat("en-US", {
+    timeZone: BOOKING_TIMEZONE,
+    weekday: "short",
+  }).format(midday);
+  return weekday === "Sat" || weekday === "Sun";
 }
 
 /** Stable hash so “fake busy” slots don’t flicker between refreshes. */
 function hashSlot(dateStr: string, slotStart: Date): number {
-  const key = `${dateStr}|${slotStart.getUTCHours()}:${slotStart.getUTCMinutes()}`;
+  const key = `${dateStr}|${slotStart.toISOString()}`;
   let hash = 2166136261;
   for (let i = 0; i < key.length; i++) {
     hash ^= key.charCodeAt(i);
@@ -44,7 +68,23 @@ function isArtificiallyBusy(dateStr: string, slotStart: Date): boolean {
   return hashSlot(dateStr, slotStart) % 100 < FAKE_BUSY_PERCENT;
 }
 
+function assertCalendarEnv(): void {
+  const missing = [
+    "GOOGLE_CLIENT_ID",
+    "GOOGLE_CLIENT_SECRET",
+    "GOOGLE_REFRESH_TOKEN",
+    "GOOGLE_CALENDAR_ID",
+  ].filter((key) => !process.env[key]?.trim());
+  if (missing.length > 0) {
+    throw new Error(
+      `Calendar not configured. Missing env: ${missing.join(", ")}`
+    );
+  }
+}
+
 async function getAccessToken(): Promise<string> {
+  assertCalendarEnv();
+
   const res = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -66,20 +106,21 @@ async function getAccessToken(): Promise<string> {
 }
 
 export async function getAvailability(dateStr: string): Promise<TimeSlot[]> {
-  const dayStart = startOfDay(parseISO(dateStr));
-
-  if (isWeekend(dayStart)) {
+  if (isWeekendInLa(dateStr)) {
     return [];
   }
 
   const token = await getAccessToken();
 
-  const windowStart = setMinutes(setHours(dayStart, WORK_START_HOUR), 0);
-  const lastSlotStart = setMinutes(
-    setHours(dayStart, LAST_SLOT_HOUR),
+  const windowStart = laLocalToUtc(dateStr, WORK_START_HOUR, 0);
+  const lastSlotStart = laLocalToUtc(
+    dateStr,
+    LAST_SLOT_HOUR,
     LAST_SLOT_MINUTE
   );
-  const windowEnd = addMinutes(lastSlotStart, DURATION_MINUTES);
+  const windowEnd = new Date(
+    lastSlotStart.getTime() + DURATION_MINUTES * 60_000
+  );
 
   const calendarId = process.env.GOOGLE_CALENDAR_ID!;
 
@@ -105,22 +146,36 @@ export async function getAvailability(dateStr: string): Promise<TimeSlot[]> {
   }
 
   const data = (await res.json()) as {
-    calendars: Record<string, { busy: { start: string; end: string }[] }>;
+    calendars: Record<
+      string,
+      { busy?: { start: string; end: string }[]; errors?: { reason: string }[] }
+    >;
   };
 
-  const busyPeriods = data.calendars?.[calendarId]?.busy ?? [];
+  const calendar = data.calendars?.[calendarId];
+  if (calendar?.errors?.length) {
+    throw new Error(
+      `Freebusy calendar error: ${calendar.errors
+        .map((e) => e.reason)
+        .join(", ")}`
+    );
+  }
+
+  const busyPeriods = calendar?.busy ?? [];
 
   const slots: TimeSlot[] = [];
-  let cursor = windowStart;
+  let cursor = windowStart.getTime();
+  const lastStartMs = lastSlotStart.getTime();
+  const stepMs = DURATION_MINUTES * 60_000;
 
-  while (cursor <= lastSlotStart) {
-    const slotEnd = addMinutes(cursor, DURATION_MINUTES);
-    const slotStart = cursor;
+  while (cursor <= lastStartMs) {
+    const slotStart = new Date(cursor);
+    const slotEnd = new Date(cursor + stepMs);
 
     const calendarBusy = busyPeriods.some((period) => {
-      const busyStart = parseISO(period.start);
-      const busyEnd = parseISO(period.end);
-      return slotStart < busyEnd && slotEnd > busyStart;
+      const busyStart = new Date(period.start).getTime();
+      const busyEnd = new Date(period.end).getTime();
+      return cursor < busyEnd && cursor + stepMs > busyStart;
     });
 
     const available =
@@ -133,7 +188,7 @@ export async function getAvailability(dateStr: string): Promise<TimeSlot[]> {
       available,
     });
 
-    cursor = addMinutes(cursor, DURATION_MINUTES);
+    cursor += stepMs;
   }
 
   return slots;
@@ -143,7 +198,13 @@ export async function isSlotStillAvailable(
   startIso: string,
   endIso: string
 ): Promise<boolean> {
-  const dateStr = format(parseISO(startIso), "yyyy-MM-dd");
+  const start = new Date(startIso);
+  const dateStr = new Intl.DateTimeFormat("en-CA", {
+    timeZone: BOOKING_TIMEZONE,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(start);
   const slots = await getAvailability(dateStr);
   return slots.some(
     (slot) =>
@@ -173,8 +234,14 @@ export async function createCalendarEvent(params: {
       body: JSON.stringify({
         summary: params.title,
         description: params.description,
-        start: { dateTime: params.start },
-        end: { dateTime: params.end },
+        start: {
+          dateTime: params.start,
+          timeZone: BOOKING_TIMEZONE,
+        },
+        end: {
+          dateTime: params.end,
+          timeZone: BOOKING_TIMEZONE,
+        },
         attendees: [
           { email: calendarId },
           { email: params.attendeeEmail, displayName: params.attendeeName },

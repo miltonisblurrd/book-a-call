@@ -11,6 +11,7 @@ type TimePickerProps = {
   selectedSlot: TimeSlot | null;
   onSelectSlot: (slot: TimeSlot) => void;
   loading?: boolean;
+  error?: string | null;
 };
 
 export default function TimePicker({
@@ -19,6 +20,7 @@ export default function TimePicker({
   selectedSlot,
   onSelectSlot,
   loading,
+  error,
 }: TimePickerProps) {
   const [format12h, setFormat12h] = useState(true);
 
@@ -71,13 +73,20 @@ export default function TimePicker({
           </div>
         )}
 
-        {!loading && slots.length === 0 && (
+        {!loading && error && (
+          <p className="text-sm text-red-500 text-center py-8 px-2">
+            {error}
+          </p>
+        )}
+
+        {!loading && !error && slots.length === 0 && (
           <p className="text-sm text-gray-400 text-center py-8">
             No availability on this day.
           </p>
         )}
 
         {!loading &&
+          !error &&
           slots.map((slot) => {
             const isSelected = selectedSlot?.start === slot.start;
             const isOpen = slot.available !== false;
