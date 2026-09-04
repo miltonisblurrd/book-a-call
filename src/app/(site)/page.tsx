@@ -1,28 +1,73 @@
-import HomeFeaturedFaqs from "@/components/HomeFeaturedFaqs";
+import BookingFlow from "@/components/booking/BookingFlow";
 import JsonLd from "@/components/JsonLd";
-import PricingSection from "@/components/PricingSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import WebflowContent from "@/components/WebflowContent";
-import WorkSection from "@/components/WorkSection";
-import { getWebflowPageSeo } from "@/lib/webflow-page-seo";
-import { localBusinessSchema } from "@/lib/seo";
-import { splitHomepageAtFeaturedFaqs } from "@/lib/split-homepage-content";
+import { extractHomepageHero } from "@/lib/extract-homepage-hero";
+import { getWebflowPage } from "@/lib/get-webflow-page";
+import { localBusinessSchema, buildPageMetadata } from "@/lib/seo";
+import type { Metadata } from "next";
 
-const { page, metadata, jsonLd } = getWebflowPageSeo("index.html", "/");
-const { before, hasPricing, after } = splitHomepageAtFeaturedFaqs(page.content);
-const pageJsonLd =
-  jsonLd.length > 0 ? jsonLd : [localBusinessSchema()];
+export const metadata: Metadata = buildPageMetadata({
+  title: "BLURRD Studio — Coming Soon | Rebrand in Progress",
+  description:
+    "BLURRD Studio is undergoing a rebrand. Text Milton at 702-677-8392 or book a 15-minute call while the new site comes together.",
+  path: "/",
+});
 
-export { metadata };
+const jsonLd = [localBusinessSchema()];
 
 export default function Page() {
+  const page = getWebflowPage("index.html");
+  const heroHtml = extractHomepageHero(page.content);
+
   return (
     <>
-      <JsonLd data={pageJsonLd} />
-      <WebflowContent html={before} depth={0} />
-      <WorkSection />
-      {hasPricing ? <PricingSection /> : null}
-      <HomeFeaturedFaqs />
-      <WebflowContent html={after} depth={0} />
+      <JsonLd data={jsonLd} />
+      <WebflowContent html={heroHtml} depth={page.depth} />
+      <TestimonialsSection />
+
+      <section className="section u-pt-0">
+        <div className="container">
+          <div className="wrapper-orange">
+            <h2 className="h2">Coming Soon</h2>
+          </div>
+          <div className="wrapper-blue">
+            <div className="wrapper-blue-header u-p-20-around">
+              <div className="wrapper-header u-mb-0">
+                <p className="text-paragraph u-extra-bold u-text-white u-mb-0">
+                  A rebrand is in progress
+                </p>
+              </div>
+            </div>
+            <div className="u-p-20-around">
+              <p className="text-paragraph u-text-gray">
+                I&apos;m refreshing the BLURRD Studio brand and site. The work
+                continues—reach out anytime while the new experience comes
+                online.
+              </p>
+              <p className="text-paragraph u-text-gray u-mt-2">
+                Prefer text?{" "}
+                <a
+                  href="sms:+17026778392"
+                  className="u-extra-bold"
+                  style={{ color: "#003399" }}
+                >
+                  Text me: 702-677-8392
+                </a>
+              </p>
+              <p className="text-paragraph u-text-gray u-mt-2">
+                Or book a 15-minute intro call below.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section u-pt-0">
+        <div className="container">
+          <BookingFlow embedded />
+        </div>
+      </section>
     </>
   );
 }

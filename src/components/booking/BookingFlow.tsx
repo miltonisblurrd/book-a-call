@@ -30,7 +30,11 @@ const SLIDE = {
 const NAVY = "#003399";
 const ORANGE = "#fbcc9b";
 
-export default function BookingFlow() {
+type BookingFlowProps = {
+  embedded?: boolean;
+};
+
+export default function BookingFlow({ embedded = false }: BookingFlowProps) {
   const [step, setStep] = useState<BookingStep>("datetime");
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedSlot, setSelectedSlot] = useState<TimeSlot | null>(null);
@@ -94,7 +98,13 @@ export default function BookingFlow() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f0ede8] flex items-start lg:items-center justify-center p-3 sm:p-4 py-6 sm:py-8 font-mono">
+    <div
+      className={
+        embedded
+          ? "bg-[#f0ede8] flex items-start justify-center p-3 sm:p-4 py-6 sm:py-8 font-mono"
+          : "min-h-screen bg-[#f0ede8] flex items-start lg:items-center justify-center p-3 sm:p-4 py-6 sm:py-8 font-mono"
+      }
+    >
       <div className="w-full max-w-5xl">
 
         {step === "confirmation" && confirmedBooking ? (
